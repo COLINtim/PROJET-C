@@ -30,7 +30,7 @@ void affichage(){// focntion affichant l'arrière plan amélioré a partir du do
 /**/
 int** loadMap(){//66 et 194
 	FILE * fichier=NULL;
-	int ** tab=malloc(300*sizeof(int));//on alloue l'espace au tableau
+	int ** tab=malloc(100*sizeof(int *));//on alloue l'espace au tableau
 	char caractere;
 	int condition=1;
 	for (int i=0; i<100; i++){
