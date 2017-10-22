@@ -76,9 +76,9 @@ void Roulement_feux(TrafficLightList *List)
 void GestionDesFeux(TrafficLightList *List)
 {
 	clock_t temps;
-	if((double)temps / CLOCKS_PER_SEC >= (List->TrafficLight->TimeForSwitch))
-		{
-			Roulement_feux(List);
-			GestionDesFeux(List);	
-		}
+	while((double)temps / CLOCKS_PER_SEC <= (List->TrafficLight->TimeForSwitch))
+	{}
+	Roulement_feux(List);
+	GestionDesFeux(List);	
+
 }
