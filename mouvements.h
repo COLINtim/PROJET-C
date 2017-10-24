@@ -116,3 +116,6 @@ void Roulement_feux(TrafficLightList *List);		//Fonction prenant en argument une
 
 void GestionDesFeux(TrafficLightList *List); //Fonction gÃ©rant les feux de la map en fonction d'un chronomÃ¨tre qu'elle initialise. Ici elle ne prend en argument qu'une seule Liste de Feux, mais on peut la gÃ©nÃ©raliser pour qu'elle en prenne plus. Tout dÃ©pend du choix qu'on fait sur la gestion des feux : 2 familles de feux, 1 famille de feux par carrefour ... etc
 	 
+Position* PositionFuture(Vehicule* vehicule); //Fonction renvoyant un struct Position (qui sera la position de vehicule à la frame suivante) en fonction de sa Direction
+
+void VehiculeEater(VehiculeList **List, Vehicule* Vehicule); //Fonction ayant pour but de supprimer de la liste VehiculeList les Vehicules sortant de la map. L'appeler lorsque PositionFuture(Vehicule) renvoit une position dont au moins une coordonnée est hors de la map
