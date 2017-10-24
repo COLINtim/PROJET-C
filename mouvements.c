@@ -123,3 +123,12 @@ void VehiculeEater(VehiculeList **List, Vehicule* Vehicule)
 								}
 						}
 }
+
+void AppendVehiculeList(VehiculeList **List, Vehicule* Vehicule)
+{
+	VehiculeList *element;
+	element = malloc(sizeof(*element));
+	element->Vehicule = Vehicule;
+	element->next = *List;
+	*List = element;
+}
