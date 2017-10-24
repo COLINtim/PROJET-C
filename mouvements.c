@@ -82,3 +82,44 @@ void GestionDesFeux(TrafficLightList *List)
 	GestionDesFeux(List);	
 
 }
+
+Position* PositionFuture(Vehicule* vehicule)
+{
+	Position* Position;
+	switch(vehicule->Direction) 
+	{
+		case NORD: 
+			Position->posX=vehicule->posX;
+			Position->posY=(vehicule->posY)+1;
+			return Position;
+		case EST: 
+			Position->posX=(vehicule->posX)+1;
+			Position->posY=vehicule->posY;
+			return Position;
+		case OUEST: 
+			Position->posX=(vehicule->posX)-1;
+			Position->posY=vehicule->posY;
+			return Position;
+		case SUD: 
+			Position->posX=vehicule->posX;
+			Position->posY=(vehicule->posY)-1;
+			return Position;
+	}
+}
+
+void VehiculeEater(VehiculeList **List, Vehicule* Vehicule)
+{
+	VehiculeList* PointeurCourant;
+	VehiculeList* PointeurPrecedent;
+	PointeurPrecedent = NULL; //pas de pointeur precedent pour le 1er element de la liste
+	for(PointeurCourant = *List; PointeurCourant != NULL; PointeurPrecedent = PointeurCourant, PointeurCourant = PointeurCourant->next){
+			if (PointeurCourant->Vehicule == Vehicule){
+				if (PointeurPrecedent == NULL){ 	/*cas ou on voudrait en fait supprimer le 1er element de la liste (Particulier)	*/
+					*List = PointeurCourant->next;} /*on dit juste que le 1er element est en fait le 2e, et on free plus bas */
+				else{
+					PointeurPrecedent->next = PointeurCourant->next; // on skip l'element a supprimer									
+									}
+			free(PointeurCourant);break;
+								}
+						}
+}
