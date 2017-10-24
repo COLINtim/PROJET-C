@@ -119,3 +119,5 @@ void GestionDesFeux(TrafficLightList *List); //Fonction gÃ©rant les feux de la
 Position* PositionFuture(Vehicule* vehicule); //Fonction renvoyant un struct Position (qui sera la position de vehicule à la frame suivante) en fonction de sa Direction
 
 void VehiculeEater(VehiculeList **List, Vehicule* Vehicule); //Fonction ayant pour but de supprimer de la liste VehiculeList les Vehicules sortant de la map. L'appeler lorsque PositionFuture(Vehicule) renvoit une position dont au moins une coordonnée est hors de la map
+
+void AppendList(TrafficLightList **List, TrafficLight *TrafficLight);
