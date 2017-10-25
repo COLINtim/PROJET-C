@@ -120,4 +120,4 @@ Position* PositionFuture(Vehicule* vehicule); //Fonction renvoyant un struct Pos
 
 void VehiculeEater(VehiculeList **List, Vehicule* Vehicule); //Fonction ayant pour but de supprimer de la liste VehiculeList les Vehicules sortant de la map. L'appeler lorsque PositionFuture(Vehicule) renvoit une position dont au moins une coordonnée est hors de la map
 
-void AppendList(TrafficLightList **List, TrafficLight *TrafficLight);
+void AppendVehiculeList(VehiculeList **List, Vehicule* Vehicule);
