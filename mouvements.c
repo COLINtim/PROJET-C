@@ -132,3 +132,22 @@ void AppendVehiculeList(VehiculeList **List, Vehicule* Vehicule)
 	element->next = *List;
 	*List = element;
 }
+Vehicule* VehiculeSpawner(int posX; int posY)
+{
+	Vehicule* Vehicule;
+	Vehicule->posX->posX;
+	Vehicule->posY->posY;
+	return Vehicule;
+}
+
+void VisualiserVehiculeList(VehiculeList *List)
+{
+	VehiculeList *tmp;
+	tmp = List;
+	while (tmp != NULL)
+		{
+			printf("posX:%d\n",tmp->Vehicule->posX);
+			printf("posy:%d\n",tmp->Vehicule->posY);
+			tmp = tmp->next;
+		}
+}
