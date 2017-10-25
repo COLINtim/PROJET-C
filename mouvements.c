@@ -76,11 +76,11 @@ void Roulement_feux(TrafficLightList *List)
 void GestionDesFeux(TrafficLightList *List)
 {
 	clock_t temps;
-	while((double)temps / CLOCKS_PER_SEC <= (List->TrafficLight->TimeForSwitch))
-	{}
-	Roulement_feux(List);
-	GestionDesFeux(List);	
-
+	if((double)temps / CLOCKS_PER_SEC >= (List->TrafficLight->TimeForSwitch))
+		{
+			Roulement_feux(List);
+			GestionDesFeux(List);	
+		}
 }
 
 Position* PositionFuture(Vehicule* vehicule)
@@ -123,7 +123,7 @@ void VehiculeEater(VehiculeList **List, Vehicule* Vehicule)
 								}
 						}
 }
-
+	
 void AppendVehiculeList(VehiculeList **List, Vehicule* Vehicule)
 {
 	VehiculeList *element;
@@ -132,12 +132,13 @@ void AppendVehiculeList(VehiculeList **List, Vehicule* Vehicule)
 	element->next = *List;
 	*List = element;
 }
-Vehicule* VehiculeSpawner(int posX; int posY)
+
+Vehicule* VehiculeSpawner(int posX, int posY)
 {
-	Vehicule* Vehicule;
-	Vehicule->posX->posX;
-	Vehicule->posY->posY;
-	return Vehicule;
+	Vehicule* Veh=malloc(sizeof(Vehicule));
+	Veh->posX=posX;
+	Veh->posY=posY;
+	return Veh;
 }
 
 void VisualiserVehiculeList(VehiculeList *List)
@@ -151,3 +152,14 @@ void VisualiserVehiculeList(VehiculeList *List)
 			tmp = tmp->next;
 		}
 }
+
+
+
+
+
+
+
+
+
+
+	
