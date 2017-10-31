@@ -1,61 +1,117 @@
 #include "librairies.h"
 #include "affichage.h"
 
-/*
-void affichage(){// focntion affichant l'arrière plan amélioré a partir du document txt comprenant les caractere basiques.
-	FILE* fichier=NULL;//creation du fichier qui contiendra le squelette de notre carte de circulation.
+
+
+
+void attente(){
+	int chrono=0;
+	while(chrono<1000){		
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+char key_pressed(){
+	struct termios oldterm, newterm;
+	int oldfd; char c, result = 0;
+	tcgetattr (STDIN_FILENO, &oldterm);
+	newterm = oldterm; newterm.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr (STDIN_FILENO, TCSANOW, &newterm);
+	oldfd = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl (STDIN_FILENO, F_SETFL, oldfd | O_NONBLOCK);
+	c = getchar();
+	tcsetattr (STDIN_FILENO, TCSANOW, &oldterm);
+	fcntl (STDIN_FILENO, F_SETFL, oldfd);
+	if (c != EOF) {
+		ungetc(c, stdin); result = getchar();
+	}
+	return result;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void affichageMap(){
+	FILE* fichier=NULL;
 	char caractere;
-	fichier =fopen("map.txt","r");// ouverture du fichier"squelette".
+	fichier =fopen("map.txt","r");
 	if(fichier!=NULL){
-		printf("\33[0;0H");//on place notre curseur en haut a gauche dans l'optique d'un affichage propre et claire.
+		printf("\033[0;0H");
 		do{	
-			caractere=fgetc(fichier);// nous recuperons les caracteres contenus dans le fichier "squelette".
-			switch(caractere){//puis nous les remplaçont par les caracteres de notre choix lors de l'affichage sur le terminal.
-				case '#': couleur("32");printf("♠️");couleur("0");break;
-				case ':': couleur("33");printf("¦");couleur("0");break;
-				case '~': couleur("46");printf("~");couleur("0");break;
-			 	case 'g': printf("←");break;
-				case 'd': printf("→");break;
-				case 'h': printf("↑");break; 
-				case 'b': printf("↓");break;
-				case 'p': printf("◙");break; 			
-				default: printf("%c",caractere);break;// ou nous reprenons le même caractere sinon. 
-			}
-		}while (caractere!=EOF);// tout cela se fait tant que la lecture du fichier n'est pas finie.
-		fclose(fichier);// fermeture du fichier "squelette".
-	}else{printf("probleme d'affichage, le fichier est vide\n");}// si le fichier "squelette" demandé n'existe pas.
-}
-*///ancien affichage
-
-/**/
-int** loadMap(){//66 et 194
-	FILE * fichier=NULL;
-	int ** tab=malloc(100*sizeof(int *));//on alloue l'espace au tableau
-	char caractere;
-	int condition=1;
-	for (int i=0; i<100; i++){
-		tab[i]=malloc(200*sizeof(int));
-	}
-	fichier=fopen("map.txt","r");
-	
-//fin de l'allocation
-	for(int j=0;j<100;j++){
-		for(int k=0; k<194; k++){
 			caractere=fgetc(fichier);
-			if(caractere==EOF){condition=0;break;}
-			tab[j][k]=caractere;
-		}
-		if (condition==0){break;}	
-	}
-	fclose(fichier);
-	return tab;
+			switch(caractere){
+				case '#': couleur("45");printf("♨");couleur("0");break;
+				
+				case '~': couleur("46");printf(" ");couleur("0");break;
+				case 's': couleur("7");printf("¤");couleur("0");break;
+				case '|': couleur("7");printf("|");couleur("0");break;
+				case 'r': couleur("7");printf("─");couleur("0");break;
+				case 'u': couleur("7");printf("│");couleur("0");break;
+				case 'x': couleur("7");printf(" ");couleur("0");break;
+				case 'y': couleur("7");printf("☰");couleur("0");break;
+				
+			 	case 'g': couleur("7");printf("←");couleur("0");break;
+				case 'd': couleur("7");printf("→");couleur("0");break;
+				case 'h': couleur("7");printf("↑");couleur("0");break;
+				case 'b': couleur("7");printf("↓");couleur("0");break;
+				case 'p': couleur("44");printf(" ");couleur("0");break;
+						
+				default: printf("%c",caractere);break;
+			}
+		}while (caractere!=EOF);
+		fclose(fichier);
+	}else{printf("probleme d'affichage, le fichier est vide\n");}
 }
-
-/**/
-void affichageMap(int ** tab){
-	for(int i=0; i<100; i++){
-		for(int j=0; j<194; j++){
-			printf("%c", tab[i][j]);
-		}
+/*
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void affichageVoiture(Voiture V){
+	couleur(V.custom[1]);
+	printf("\033[%d;%dH%c",V.y,V.x,V.custom[0]);
+	couleur("0");
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void affichageTramwayHaut(Tramway T){
+	int calcul=0;
+	if (T[0]='fin'){
+	}else{	
+		if (T[0].posX<=118){
+			for (int i=0; i<8; i++){
+				printf("\033[%d;%dH%c",T[i].posY,T[i].posX,T[i].custom);
+			}
+		}	
+		calcul = T[0].posX-118;
+		printf("\033[%d;%dH%c",T[0].posY+calcul,118,T[0].custom);
+		affichageTramwayHaut(T+1);
 	}
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void affichageTramwayBas(Tramway T){
+	int calcul=0;
+	if (T[0]='fin'){
+	}else{	
+		if (T[0].posX<=114){
+			for (int i=0; i<8; i++){
+				printf("\033[%d;%dH%c",T[i].posY,T[i].posX,T[i].custom);
+			}
+		}	
+		calcul = T[0].posX-114;
+		printf("\033[%d;%dH%c",T[0].posY+calcul,114,T[0].custom);
+		affichageTramwayHaut(T+1);
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void affichagePieton(Pieton P){
+	printf("\033[%d;%dH%c",P.y,P.x,P.custom);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void affichageComplet(Tramway * TS,Voiture * VS, Pieton * TS){
+	affichageMap();
+	for(int j=0; j<longueur.VS; j++){.
+		affichageVoiture(VS[j]);
+	}
+	for(int i=0; i<longueur.TS; i++){	
+		affichageTram(TS[i]);
+	}
+	for(int k=0; k<longueur.PS; k++){
+		affichagePieton(PS[k]);
+	}
+}*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void customGenerator(){
+	}
