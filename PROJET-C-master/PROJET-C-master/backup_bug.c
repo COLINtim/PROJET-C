@@ -1,0 +1,57 @@
+void RoulementFeuxDecision(char ** MATRIX)
+{
+
+	//FEUX HORIZONTAUX
+	
+	MATRIX[86][59]=swap(MATRIX[86][59]);
+	MATRIX[90][59]=swap(MATRIX[90][59]);
+
+	MATRIX[86][55]=swap(MATRIX[86][55]);
+	MATRIX[90][55]=swap(MATRIX[90][55]);
+	
+	MATRIX[49][49]=swap(MATRIX[49][49]);
+	MATRIX[53][49]=swap(MATRIX[53][49]);
+	
+	MATRIX[49][43]=swap(MATRIX[49][43]);
+	MATRIX[53][43]=swap(MATRIX[53][43]);
+
+	MATRIX[60][20]=swap(MATRIX[60][20]);
+	MATRIX[64][20]=swap(MATRIX[64][20]);
+	
+	MATRIX[86][20]=swap(MATRIX[86][20]);
+	MATRIX[90][20]=swap(MATRIX[90][20]);
+	
+	MATRIX[120][20]=swap(MATRIX[120][20]);
+	MATRIX[124][20]=swap(MATRIX[124][20]);
+	
+	MATRIX[86][26]=swap(MATRIX[86][26]);
+	MATRIX[90][26]=swap(MATRIX[90][26]);
+
+	//FEUX VERTICAUX
+/*
+	MATRIX[45][45]=swap(MATRIX[45][45]);
+	MATRIX[45][47]=swap(MATRIX[45][47]);
+	
+	MATRIX[57][45]=swap(MATRIX[57][45]);
+	MATRIX[57][47]=swap(MATRIX[57][47]);
+	
+	MATRIX[57][22]=swap(MATRIX[57][22]);
+	MATRIX[57][24]=swap(MATRIX[57][24]);
+	
+	MATRIX[67][22]=swap(MATRIX[67][22]);
+	MATRIX[67][24]=swap(MATRIX[67][24]);
+	
+	MATRIX[84][22]=swap(MATRIX[84][22]);
+	MATRIX[84][24]=swap(MATRIX[84][24]);
+	
+	MATRIX[92][22]=swap(MATRIX[92][22]);
+	MATRIX[92][24]=swap(MATRIX[92][24]);
+	
+	MATRIX[116][22]=swap(MATRIX[116][22]);
+	MATRIX[116][24]=swap(MATRIX[116][24]);
+	
+	MATRIX[128][22]=swap(MATRIX[128][22]);
+	MATRIX[128][24]=swap(MATRIX[128][24]);
+
+*/
+}
