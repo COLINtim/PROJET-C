@@ -4,7 +4,8 @@
 
 void attente(){
 	int chrono=0;
-	while(chrono<1000){		
+	while(chrono<10000000){
+		chrono++;	
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,7 +157,7 @@ void affichagePieton(Pieton P){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageComplet(Tramway * TS,Vehicule * VS, Pieton * TS){
+void affichageComplet(Tramway ** TS,Vehicule ** VS, Pieton ** TS){
 	affichageMap();
 	for(int j=0; j<longueur.VS; j++){.
 		affichageVoiture(VS[j]);
@@ -169,7 +170,7 @@ void affichageComplet(Tramway * TS,Vehicule * VS, Pieton * TS){
 	}
 }*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void intiVehicule(Vehicule * V){
+void initVehicule(Vehicule * V){
 
 	srand(time(NULL));
 	
@@ -190,3 +191,27 @@ void intiVehicule(Vehicule * V){
 		default :V->custom[1]='b';
 	}
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void intiBoat(Boat * B){
+
+	srand(time(NULL));
+	
+	switch(rand()%6){
+		case 0:B->custom[0]='⛴';
+		case 1:B->custom[0]='🛳';
+		case 2:B->custom[0]='🛥';
+		case 3:B->custom[0]='⛵️';
+		case 4:B->custom[0]='🍩';
+		default :B->custom[0]='⛴';
+	}
+	switch(rand()%6){
+		case 0:B->custom[1]='v';
+		case 1:B->custom[1]='r';
+		case 2:B->custom[1]='o';
+		case 3:B->custom[1]='b';
+		case 4:B->custom[1]='s';
+		default :B->custom[1]='b';
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

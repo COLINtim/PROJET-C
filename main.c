@@ -7,11 +7,21 @@
 
 int main()
 {	
-	printf("oui\n");
-	system("clear");	
-	affichageMap();
+	VehiculeList* liste = NULL;
+	Vehicule* vehicule1 = VehiculeSpawner(4,3,NORD);
+	initVehicule(&vehicule1);
+	AppendVehiculeList(&liste,vehicule1);
+
+	while (1==1){
+		system("clear");
+		affichageMap();
+		affichageVoiture(* vehicule1);
+		attente();
+		
+	}
+
 	/* TESTS RELATIFS à L'AFFICHAGE
-	system("clear");	
+	system("clear");
 	affichageMap();
 	clock_t temps;
 	Chrono= temps/CLOCKS_PER_SEC;
