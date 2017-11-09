@@ -30,17 +30,17 @@ void affichageMap(){
 				case '#': couleur("45");printf("♨");couleur("0");break;
 				
 				case '~': couleur("46");printf(" ");couleur("0");break;
-				case 's': couleur("7");printf("¤");couleur("0");break;
-				case '|': couleur("7");printf("|");couleur("0");break;
-				case 'r': couleur("7");printf("─");couleur("0");break;
-				case 'u': couleur("7");printf("│");couleur("0");break;
-				case 'x': couleur("7");printf(" ");couleur("0");break;
-				case 'y': couleur("7");printf("☰");couleur("0");break;
+				case 's': couleur("32");printf("¤");couleur("0");break;
+				case '|': couleur("32");printf("|");couleur("0");break;
+				case 'r': couleur("32");printf("─");couleur("0");break;
+				case 'u': couleur("32");printf("│");couleur("0");break;
+				case 'x': couleur("34");printf(" ");couleur("0");break;
+				case 'y': couleur("32");printf("☰");couleur("0");break;
 				
-			 	case 'g': couleur("7");printf("←");couleur("0");break;
-				case 'd': couleur("7");printf("→");couleur("0");break;
-				case 'h': couleur("7");printf("↑");couleur("0");break;
-				case 'b': couleur("7");printf("↓");couleur("0");break;
+			 	case 'g': couleur("32");printf("←");couleur("0");break;
+				case 'd': couleur("32");printf("→");couleur("0");break;
+				case 'h': couleur("32");printf("↑");couleur("0");break;
+				case 'b': couleur("32");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
 				case 'n': printf("⛱️");break;
 		
