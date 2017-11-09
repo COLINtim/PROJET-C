@@ -1,14 +1,5 @@
 #include "librairies.h"
-#include "affichage.h"
 
-
-void attente(){
-	
-	int chrono=0;
-	while(chrono<100000000){
-		chrono++;	
-	}
-}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char key_pressed(){
 	struct termios oldterm, newterm;
@@ -51,7 +42,7 @@ void affichageMap(){
 				case 'h': couleur("7");printf("↑");couleur("0");break;
 				case 'b': couleur("7");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
-				case 'n': printf("⛱️");break;
+				case 'o': couleur("44");printf("⛱️");couleur("0");break;
 		
 				default: printf("%c",caractere);break;
 			}
@@ -59,123 +50,7 @@ void affichageMap(){
 		fclose(fichier);
 	}else{printf("probleme d'affichage, le fichier est vide\n");}
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageFeu(TrafficLight T){
-	switch(T.Current_Color){
-		case 0: couleur("42");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-		case 1: couleur("43");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-		case 2: couleur("41");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-		case 3: couleur("41");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-	}
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageVoiture(Vehicule V){
-	
-	printf("\33[%d;%dH🚍",V.posY,V.posX);
-		
-/*	switch(V->custom[1]){
-		case 'v': couleur("32");
-			printf("\033[%d;%dH🚍",V->posY,V->posX);
-			couleur("0");
-		case 'o': couleur("33");
-			printf("\033[%d;%dH🚘",V->posY,V->posX);
-			couleur("0");
-		case 'r': couleur("31");
-			printf("\033[%d;%dH🚖",V->posY,V->posX);
-			couleur("0");
-		case 'b': couleur("31");
-			printf("\033[%d;%dH🚘",V->posY,V->posX);
-			couleur("0");
-		case 's': couleur("37");
-			printf("\033[%d;%dH🚘",V->posY,V->posX);
-			couleur("0");
-		default: couleur("7");
-			printf("\033[%d;%dH🚍",V->posY,V->posX);
-			couleur("0");
-	}
-*/	
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageBoat(Boat B){
-	
-	switch(B.custom[1]){
-		case 'v': couleur("32");
-			printf("\033[%d;%dH🚔",B.posY,B.posX);
-			couleur("0");
-		case 'o': couleur("33");
-			printf("\033[%d;%dH🚍",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-		case 'r': couleur("31");
-			printf("\033[%d;%dH🚍",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-		case 'b': couleur("35");
-			printf("\033[%d;%dH🚖",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-		case 's': couleur("37");
-			printf("\033[%d;%dH🚍",B.posY,B.posX);
-			couleur("0");
-		default: couleur("33");
-			printf("\033[%d;%dH🚍",B.posY,B.posX);
-			couleur("0");
-	}
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Vehicule * initVehicule(int rd,Vehicule * V){
-	
-/*	switch(rand()%6){
-		case 0:
-		case 1:V->custom[0]='A';
-		case 2:V->custom[0]='B';
-		case 3:V->custom[0]='C';
-		case 4:V->custom[0]='D';
-		default :V->custom[0]='E';
-	}
-*/
-	switch(rd){
-		case 0:V->custom[1]='v';
-		case 1:V->custom[1]='r';
-		case 2:V->custom[1]='o';
-		case 3:V->custom[1]='b';
-		case 4:V->custom[1]='s';
-		default :V->custom[1]='v';
-	}
-	return V;
 
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void intiBoat(Boat * B){
-
-	srand(time(NULL));
-	
-	switch(rand()%6){
-		case 0:B->custom[0]='A';
-		case 1:B->custom[0]='🛳';
-		case 2:B->custom[0]='🛥';
-		case 3:B->custom[0]='⛵️';
-		case 4:B->custom[0]='🍩';
-		default :B->custom[0]='⛴';
-	}
-	switch(rand()%6){
-		case 0:B->custom[1]='v';
-		case 1:B->custom[1]='r';
-		case 2:B->custom[1]='o';
-		case 3:B->custom[1]='b';
-		case 4:B->custom[1]='s';
-		default :B->custom[1]='b';
-	}
-}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
@@ -214,11 +89,63 @@ void affichagePieton(Pieton P){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageComplet(Vehicule * VS){
+void affichageComplet(Tramway ** TS,Vehicule ** VS, Pieton ** TS){
 	affichageMap();
-	affichageVoiture(VS);
+	for(int j=0; j<longueur.VS; j++){.
+		affichageVoiture(VS[j]);
+	}
+	for(int i=0; i<longueur.TS; i++){	
+		affichageTram(TS[i]);
+	}
+	for(int k=0; k<longueur.PS; k++){
+		affichagePieton(PS[k]);
+	}
+}*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+void initVehicule(Vehicule * V){
 
+	srand(time(NULL));
 	
+	switch(rand()%6){
+		case 0:V->custom[0]='🚘';
+		case 1:V->custom[0]='🚔';
+		case 2:V->custom[0]='🚍';
+		case 3:V->custom[0]='🚘';
+		case 4:V->custom[0]='🚖';
+		default :V->custom[0]='🚘';
+	}
+	switch(rand()%6){
+		case 0:V->custom[1]='v';
+		case 1:V->custom[1]='r';
+		case 2:V->custom[1]='o';
+		case 3:V->custom[1]='b';
+		case 4:V->custom[1]='s';
+		default :V->custom[1]='b';
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void intiBoat(Boat * B){
+
+	srand(time(NULL));
+	
+	switch(rand()%6){
+		case 0:B->custom[0]='⛴';
+		case 1:B->custom[0]='🛳';
+		case 2:B->custom[0]='🛥';
+		case 3:B->custom[0]='⛵️';
+		case 4:B->custom[0]='🍩';
+		default :B->custom[0]='⛴';
+	}
+	switch(rand()%6){
+		case 0:B->custom[1]='v';
+		case 1:B->custom[1]='r';
+		case 2:B->custom[1]='o';
+		case 3:B->custom[1]='b';
+		case 4:B->custom[1]='s';
+		default :B->custom[1]='b';
+	}
 }
 */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
