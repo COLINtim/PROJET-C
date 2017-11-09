@@ -46,7 +46,7 @@ typedef struct Vehicule
 	int posX;
 	int posY;
 	int vitesse;
-	char custom[30];
+	wchar_t custom[2];
 	Carburant Carburant;
 			
 } Vehicule;

@@ -4,21 +4,27 @@
 
 #define NBC 194 
 #define NBL 65
-
+//system("setterm -cursor off");
 int main()
 {	
-	VehiculeList* liste = NULL;
-	Vehicule* vehicule1 = VehiculeSpawner(4,3,NORD);
-	initVehicule(&vehicule1);
-	AppendVehiculeList(&liste,vehicule1);
-
-	while (1==1){
-		system("clear");
+	system("clear");
+	srand(time(NULL));
+	int rd=rand()%6;
+	affichageMap();
+	Vehicule * vehicule1 = VehiculeSpawner(49,66,NORD);
+	vehicule1=initVehicule(rd,vehicule1);
+	int chrono=0;
+	
+	//while(1==1){	
 		affichageMap();
-		affichageVoiture(* vehicule1);
-		attente();
-		
-	}
+		affichageVoiture(*vehicule1);
+		vehicule1->posY=vehicule1->posY-1;
+		chrono=0;
+		while(chrono<100000000){
+			chrono++;	
+		}
+
+	//}
 
 	/* TESTS RELATIFS à L'AFFICHAGE
 	system("clear");
