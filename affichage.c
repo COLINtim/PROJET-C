@@ -1,13 +1,5 @@
 #include "librairies.h"
-#include "affichage.h"
 
-
-void attente(){
-	int chrono=0;
-	while(chrono<10000000){
-		chrono++;	
-	}
-}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char key_pressed(){
 	struct termios oldterm, newterm;
@@ -50,7 +42,7 @@ void affichageMap(){
 				case 'h': couleur("7");printf("↑");couleur("0");break;
 				case 'b': couleur("7");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
-				case 'o': couleur("44");printf("⛱️");couleur("0");break;
+				case 'n': printf("⛱️");break;
 		
 				default: printf("%c",caractere);break;
 			}
@@ -58,68 +50,8 @@ void affichageMap(){
 		fclose(fichier);
 	}else{printf("probleme d'affichage, le fichier est vide\n");}
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageFeu(TrafficLight T){
-	switch(T.Current_Color){
-		case 0: couleur("42");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-		case 1: couleur("43");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-		case 2: couleur("41");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-		case 3: couleur("41");
-			printf("\033[%d;%dH ",T.posY,T.posX);
-			couleur("0");
-			break;
-	}
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageVoiture(Vehicule V){
-	switch(V.custom[1]){
-		case 'v': couleur("42");
-			printf("\033[%d;%dH%c",V.posY,V.posX,V.custom[0]);
-			couleur("0");
-		case 'o': couleur("43");
-			printf("\033[%d;%dH%c",V.posY,V.posX,V.custom[0]);
-			couleur("0");
-		case 'r': couleur("41");
-			printf("\033[%d;%dH%c",V.posY,V.posX,V.custom[0]);
-			couleur("0");
-		case 'b': couleur("45");
-			printf("\033[%d;%dH%c",V.posY,V.posX,V.custom[0]);
-			couleur("0");
-		case 's': couleur("47");
-			printf("\033[%d;%dH%c",V.posY,V.posX,V.custom[0]);
-			couleur("0");
-	}
-	
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void affichageBoat(Boat B){
-	switch(B.custom[1]){
-		case 'v': couleur("42");
-			printf("\033[%d;%dH%c",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-		case 'o': couleur("43");
-			printf("\033[%d;%dH%c",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-		case 'r': couleur("41");
-			printf("\033[%d;%dH%c",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-		case 'b': couleur("45");
-			printf("\033[%d;%dH%c",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-		case 's': couleur("47");
-			printf("\033[%d;%dH%c",B.posY,B.posX,B.custom[0]);
-			couleur("0");
-	}
-}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
 void affichageTramwayHaut(Tramway T){
@@ -170,6 +102,7 @@ void affichageComplet(Tramway ** TS,Vehicule ** VS, Pieton ** TS){
 	}
 }*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 void initVehicule(Vehicule * V){
 
 	srand(time(NULL));
@@ -213,5 +146,6 @@ void intiBoat(Boat * B){
 		default :B->custom[1]='b';
 	}
 }
+*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
