@@ -277,10 +277,15 @@ char AleatoireCustomVehicule()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 void affichagePartielVehicule(char ** matrice, Vehicule * V){
 
-	char caractere = matrice[V->posX][V->posY];
-	printf("\033[%d;%dH",V->posX,V->posY);
+	char caractere;;
 	
-	switch(caractere){
+	for(int i = 0; i<2; i++){
+
+		caractere = matrice[V->posX][V->posY+i];
+
+		printf("\033[%d;%dH",V->posX,V->posY+i);
+		
+		switch(caractere){
 				case '#': couleur("45");printf("♨");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
@@ -318,7 +323,8 @@ void affichagePartielVehicule(char ** matrice, Vehicule * V){
 				case '*': printf("▓");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;
-			}
+		}
+	}			
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

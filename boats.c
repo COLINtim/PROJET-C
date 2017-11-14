@@ -247,10 +247,15 @@ char AleatoireCustomBoat()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////:
 void affichagePartielBoat(char ** matrice, Boat * B){
 
-	char caractere = matrice[B->posX][B->posY];
-	printf("\033[%d;%dH",B->posX,B->posY);
+	char caractere;;
 	
-	switch(caractere){
+	for(int i = 0; i<2; i++){
+
+		caractere = matrice[B->posX][B->posY+i];
+
+		printf("\033[%d;%dH",B->posX,B->posY+i);
+		
+		switch(caractere){
 				case '#': couleur("45");printf("♨");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
@@ -288,7 +293,8 @@ void affichagePartielBoat(char ** matrice, Boat * B){
 				case '*': printf("▓");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;
-			}
+		}
+	}			
 
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
