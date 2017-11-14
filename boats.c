@@ -25,21 +25,29 @@ void boatSpawner(int posX, int posY, Sens Sens, char a, char** MatriceDecision, 
 	appendBoatList(ListeDesBoats, Bateau);
 }
 
-void boatEater(BoatList **List, Boat* Boat)
+BoatList* boatEater(BoatList **List, Boat* Boat)
 {
 	BoatList* PointeurCourant;
 	BoatList* PointeurPrecedent;
 	PointeurPrecedent = NULL; //pas de pointeur precedent pour le 1er element de la liste
-	for(PointeurCourant = *List; PointeurCourant != NULL; PointeurPrecedent = PointeurCourant, PointeurCourant = PointeurCourant->next){
-			if (PointeurCourant->Boat == Boat){
-				if (PointeurPrecedent == NULL){ 	/*cas ou on voudrait en fait supprimer le 1er element de la liste (Particulier)	*/
-					*List = PointeurCourant->next;} /*on dit juste que le 1er element est en fait le 2e, et on free plus bas */
-				else{
-					PointeurPrecedent->next = PointeurCourant->next; // on skip l'element a supprimer									
-									}
-			free(PointeurCourant);break;
-								}
-						}
+	for (PointeurCourant = *List; PointeurCourant != NULL; PointeurPrecedent = PointeurCourant, PointeurCourant = PointeurCourant->next)
+	{
+			if (PointeurCourant->Boat == Boat)
+			{
+				if (PointeurPrecedent == NULL)
+					{ 	/*cas ou on voudrait en fait supprimer le 1er element de la liste (Particulier)	*/
+						*List = PointeurCourant->next;
+					} /*on dit juste que le 1er element est en fait le 2e, et on free plus bas */
+				else 
+					{
+						PointeurPrecedent->next = PointeurCourant->next; // on skip l'element a supprimer									
+					}
+					BoatList* ptrToReturn = PointeurCourant->next;
+					free (PointeurCourant);break;
+					return ptrToReturn;
+			}
+	}
+return NULL;
 }
 
 void visualiserBoatList(BoatList *List)
@@ -85,11 +93,11 @@ void setNewBoatSens(Boat* Boat, char ** MatriceDecision, BoatList *ListeDesBoats
 	case 'g':
 		Boat->Sens = GAUCHE; break;
 	case 'x':
-		Boat->Sens = sensAleatoire(GAUCHE,HAUT); break;
+		Boat->Sens = sensAleatoire(DROITE,HAUT); break;
 	case 'y':
 		Boat->Sens = sensAleatoire(DROITE,BAS); break;
 	case 'E':
-		boatEater(&ListeDesBoats,Boat);
+		break;
 	}
 }
 
@@ -122,78 +130,165 @@ Coordonnees* positionFutureBoat(Boat* Boat)
 	}
 }
 
-void roulementBoatsPosition(char** MatriceDecision, BoatList** ListeDesBoats)
+void roulementBoatsPosition(char ** MatriceMap,char** MatriceDecision, BoatList** ListeDesBoats)
 {
 	BoatList *tmp;
 	tmp = *ListeDesBoats;
 	while (tmp !=NULL)
 	{
 		Coordonnees* NextCoordonnees = positionFutureBoat(tmp->Boat); //astuce pour bien gerer la memoire et free apres
-		if(MatriceDecision[NextCoordonnees->posX][NextCoordonnees->posY]!='L')
+		if(MatriceDecision[NextCoordonnees->posX][NextCoordonnees->posY]=='L')
+		{
+			affichageBoat(tmp->Boat);
+			tmp = tmp->next;
+		}
+		else
 		{
 			if(tmp->Boat->CaseDecision == 'D') // S'il passe sous un pont
 			{
 					MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = tmp->Boat->CaseDecision; //On remet le D à sa place
+					affichagePartielBoat(MatriceMap,tmp->Boat);
 					setNewPositionBoat(tmp->Boat); // Mise a jour de la position du Boat dans sa structure
 					tmp->Boat->CaseDecision = 'F'; // Mode fantome, le bateau est sous le pont
-			}
-			else if(tmp->Boat->CaseDecision == 'E') // Si la case ou il se trouve est un Eater (fin de map)
-			{
-					boatEater(ListeDesBoats, tmp->Boat);
+					tmp = tmp->next;
 			}
 			else if(tmp->Boat->CaseDecision == 'F') //Mode fantome, le bateau est sous le pont
 			{
 					if(MatriceDecision[NextCoordonnees->posX][NextCoordonnees->posY]=='A')
-					{
+					{	
+						affichagePartielBoat(MatriceMap,tmp->Boat);
 						setNewPositionBoat(tmp->Boat); // Mise a jour de la position du Boat dans sa structure
 						tmp->Boat->CaseDecision = MatriceDecision[tmp->Boat->posX][tmp->Boat->posY]; //Mise à jour de sa CaseDecision
 						MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = 'L'; // Mise a jour de la MatriceDecison
 						affichageBoat(tmp->Boat);
+						tmp = tmp->next;
 					}
 					else{
 					setNewPositionBoat(tmp->Boat); // Mise a jour de la position du Boat dans sa structure
+					tmp = tmp->next;
 						}
 			}
 			else
 			{
+
 			MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = tmp->Boat->CaseDecision; //La case ou se trouvait le bateau redevient de l'eau
+			affichagePartielBoat(MatriceMap,tmp->Boat);
 			setNewPositionBoat(tmp->Boat); // Mise a jour de la position du Boat dans sa structure
 			tmp->Boat->CaseDecision = MatriceDecision[tmp->Boat->posX][tmp->Boat->posY]; //Mise à jour de sa CaseDecision
 			setNewBoatSens(tmp->Boat, MatriceDecision, *ListeDesBoats); //Mise a jour de la Direction du Bateau en fonction de la ou il se situe sur la MatriceDecison
 			MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = 'L'; // Mise a jour de la MatriceDecison
 			affichageBoat(tmp->Boat);
+				if (tmp->Boat->CaseDecision == 'E')
+				{
+					affichagePartielBoat(MatriceMap,tmp->Boat);
+					tmp = boatEater(ListeDesBoats, tmp->Boat);
+				}
+				else
+				{
+					tmp = tmp->next;	
+				}
 			}
 		}
-		else
-		{
-			//Printf le bateau a la meme position
-		}
-		tmp = tmp->next;
 		free(NextCoordonnees);
 	}
 }
 
-void affichageBoat(Boat* B){
+void affichageBoat(Boat* B){//⛴
 	switch(B->custom){
-		case 'v': couleur("46");
-			printf("\033[%d;%dH⛵️",B->posX,B->posY);
+		case 'v': 
+		couleur("30");
+		couleur("46");
+			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
-		case 'o': couleur("46");
-			printf("\033[%d;%dH🛥",B->posX,B->posY);
+		case 'o': 
+		couleur("30");
+		couleur("46");
+			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
-		case 'r': couleur("46");
-			printf("\033[%d;%dH🍩",B->posX,B->posY);
+		case 'r': 
+		couleur("30");
+		couleur("46");
+			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
-		case 'b': couleur("46");
-			printf("\033[%d;%dH⛴",B->posX,B->posY);
-			couleur("0");
-			break;
-		case 's': couleur("46");
-			printf("\033[%d;%dH🚘",B->posX,B->posY);
+		case 'b': 
+		couleur("30");
+		couleur("46");
+			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
 	}
 }
+
+void EaterOrNot(Boat* Boat, BoatList** ListeDesBoats)
+{
+	if (Boat->CaseDecision == 'E')
+	{
+		boatEater(ListeDesBoats, Boat);
+	}
+}
+
+char AleatoireCustomBoat()
+{
+	switch(rand()%4)
+	{
+		case 0: 
+		return 'v'; break;
+		case 1: 
+		return 'r'; break;
+		case 2:
+		return 'o'; break;
+		default:
+		return 'b'; break;
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////:
+void affichagePartielBoat(char ** matrice, Boat * B){
+
+	char caractere = matrice[B->posX][B->posY];
+	printf("\033[%d;%dH",B->posX,B->posY);
+	
+	switch(caractere){
+				case '#': couleur("45");printf("♨");couleur("0");break;
+				//eau
+				case '~': couleur("46");printf(" ");couleur("0");break;
+				//caracteres liés a la route
+				case 's': couleur("32");printf("¤");couleur("0");break;
+				case '|': couleur("32");printf("|");couleur("0");break;
+				case 'r': couleur("32");printf("─");couleur("0");break;
+				case 'u': couleur("32");printf("│");couleur("0");break;
+				case 'x': couleur("34");printf(" ");couleur("0");break;
+				case 'y': couleur("32");printf("☰");couleur("0");break;
+			 	case 'g': couleur("32");printf("←");couleur("0");break;
+				case 'd': couleur("32");printf("→");couleur("0");break;
+				case 'h': couleur("32");printf("↑");couleur("0");break;
+				case 'b': couleur("32");printf("↓");couleur("0");break;
+				case 'p': couleur("44");printf(" ");couleur("0");break;
+				case 'n': printf("⛱");break;
+				//caracters spéciaux:
+				case 'k': printf("═");break;
+				case 'l': printf("╚");break;
+				case 'm': printf("║");break;
+				case 'o': printf("╝");break;
+				case 'q': printf("╗");break;
+				case 't': printf("╔");break;
+				case 'v': printf("─");break;
+				case 'w': printf("│");break;
+				case 'z': printf("┐");break;
+				case 'a': printf("┌");break;
+				case 'c': printf("┘");break;
+				case 'e': printf("└");break;
+				case 'f': printf("╮");break;
+				case 'i': printf("╯");break;
+				case 'j': printf("╰");break;
+				case '!': printf("╭");break;
+				case '%': printf("▒");break;
+				case '*': printf("▓");break;
+				//caracteres par default
+				default: printf("%c",caractere);break;
+			}
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

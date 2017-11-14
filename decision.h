@@ -1,12 +1,13 @@
 #include "librairies.h"
 
-char** MatrixInit(int NBC, int NBL); //Initialise une Matrice de taille (NBC,NBL)
+#define NBC 195
+#define NBL 66
 
-void TextToMatrix(int NBC, int NBL, char** MATRIX, char* nomdufichier); //Initialise et renvoit une Matrice remplie du fichier decision.txt
+char** matrixInit(); //Initialise une Matrice de taille (NBC,NBL)
 
-void ShowMatrix(int NBC, int NBL, char** MATRIX); //Fonction affichant une Matrice de taille(NBL,NBC)
+void textToMatrix(char** Matrice, char* nomdufichiertexte); //Initialise et renvoit une Matrice remplie du fichier decision.txt
 
-char swap(char); // ouvre ou ferme "la porte" (feu) sur le char **
+void showMatrix(char** Matrice); //Fonction affichant une Matrice de taille(NBL,NBC)
 
-void RoulementFeuxDecision(int NBC, int NBL, char ** MATRIX); // Effectue un roulement des feux sur le tableau (ferme/ouvre les portes) A appeler avec RoulementFeux qui porte sur la liste des feux
+void roulementFeuxDecision(char ** MATRIX); // Effectue un roulement des feux sur le tableau (ferme/ouvre les portes) A appeler avec RoulementFeux qui porte sur la liste des feux
 
