@@ -70,13 +70,13 @@ void roulement_feux(TrafficLightList ** List, char *** MatriceDecision)
 
 				switch(tmp->TrafficLight->color) {
 
-					case 100: tmp->TrafficLight->color = 12;break;//modificationDeMatrice(tmp->TrafficLight,&MatriceDecision,'f');break;
+					case 100: tmp->TrafficLight->color = 12;break;modificationDeMatrice(tmp->TrafficLight,&(*MatriceDecision),'f');break;
 				
-					case 12: tmp->TrafficLight->color = 64;break;//modificationDeMatrice(tmp->TrafficLight,&MatriceDecision,'f');break;
+					case 12: tmp->TrafficLight->color = 64;break;modificationDeMatrice(tmp->TrafficLight,&(*MatriceDecision),'f');break;
 				
-					case 64: tmp->TrafficLight->color = 20;break;//modificationDeMatrice(tmp->TrafficLight,&MatriceDecision,'o');break;
+					case 64: tmp->TrafficLight->color = 20;break;modificationDeMatrice(tmp->TrafficLight,&(*MatriceDecision),'o');break;
 				
-					case 20: tmp->TrafficLight->color = 100;break;//modificationDeMatrice(tmp->TrafficLight,&MatriceDecision,'o');break;
+					case 20: tmp->TrafficLight->color = 100;break;modificationDeMatrice(tmp->TrafficLight,&(*MatriceDecision),'o');break;
 				}
 
 				affichageFeu(tmp->TrafficLight);
@@ -97,14 +97,14 @@ void roulement_feux(TrafficLightList ** List, char *** MatriceDecision)
 void modificationDeMatrice(TrafficLight * T, char *** MatriceDecision, char caractere){
 	int i=0;
 	switch(T->posX){
-		case 20: MatriceDecision[T->posX][T->posY+2]=caractere;break;
-		case 43: MatriceDecision[T->posX][T->posY+2]=caractere;break;
-		case 26: MatriceDecision[T->posX-1][T->posY]=caractere;break;
-		case 49: MatriceDecision[T->posX-1][T->posY]=caractere;break;
-		case 22: MatriceDecision[T->posX+1][T->posY]=caractere;break;
-		case 44: MatriceDecision[T->posX+1][T->posY]=caractere;break;
-		case 27: MatriceDecision[T->posX][T->posY-2]=caractere;break;
-		case 50: MatriceDecision[T->posX][T->posY-2]=caractere;break;
+		case 20: (*MatriceDecision)[T->posX][T->posY+2]=caractere;break;
+		case 43: (*MatriceDecision)[T->posX][T->posY+2]=caractere;break;
+		case 26: (*MatriceDecision)[T->posX-1][T->posY]=caractere;break;
+		case 49: (*MatriceDecision)[T->posX-1][T->posY]=caractere;break;
+		case 22: (*MatriceDecision)[T->posX+1][T->posY]=caractere;break;
+		case 44: (*MatriceDecision)[T->posX+1][T->posY]=caractere;break;
+		case 27: (*MatriceDecision)[T->posX][T->posY-2]=caractere;break;
+		case 50: (*MatriceDecision)[T->posX][T->posY-2]=caractere;break;
 	}
 }
 //////////////////////////////////////////////////////////////////////////
