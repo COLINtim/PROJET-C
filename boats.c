@@ -196,19 +196,19 @@ void roulementBoatsPosition(char ** MatriceMap,char** MatriceDecision, BoatList*
 void affichageBoat(Boat* B){//⛴
 	switch(B->custom){
 		case 'v': 
-		couleur("30");
+		couleur("31");
 		couleur("46");
 			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
 		case 'o': 
-		couleur("30");
+		couleur("32");
 		couleur("46");
 			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
 		case 'r': 
-		couleur("30");
+		couleur("33");
 		couleur("46");
 			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");

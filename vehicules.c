@@ -91,7 +91,7 @@ void roulementVehiculesPosition(char ** MatriceMap,char** MatriceDecision, Vehic
 			}
 			else 
 			{
-				affichagePartielVehicule(MatriceMap, tmp->Vehicule);
+				//affichagePartielVehicule(MatriceMap, tmp->Vehicule);
 				affichageVehicule(tmp->Vehicule);
 			}
 			free(NextPosition);
@@ -232,29 +232,29 @@ void affichageVehicule(Vehicule* V)
 	{
 		case 'v': 
 			couleur("32");
-			printf("\033[%d;%dH\🚘",V->posX,V->posY);
+			printf("\033[%d;%dH🚔",V->posX,V->posY);
 			couleur("0");
 			break;
 
 		case 'o': 
 			couleur("33");
-			printf("\033[%d;%dH\🚘",V->posX,V->posY);
+			printf("\033[%d;%dH🏇",V->posX,V->posY);
 			couleur("0");
 			break;
 
 		case 'r': 
 			couleur("31");
-			printf("\033[%d;%dH\🚘",V->posX,V->posY);
+			printf("\033[%d;%dH🚍",V->posX,V->posY);
 			couleur("0");
 			break;
 
 		case 'b': 
 			couleur("35");
-			printf("\033[%d;%dH\🚘",V->posX,V->posY);
+			printf("\033[%d;%dH🚘",V->posX,V->posY);
 			couleur("0");
 			break;
 
-		case 's': printf("\033[%d;%dHv\n",V->posX,V->posY);break;
+		case 's': printf("\033[%d;%dH🚘\n",V->posX,V->posY);break;
 	}
 }
 

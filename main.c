@@ -19,17 +19,20 @@ int main()
 // TESTS RELATIFS AUX FEUX
 /*
 TrafficLightList* Liste=NULL;
-TrafficLight* FEU1 = createTrafficLight(4, 5, VERT);
-TrafficLight* FEU2 = createTrafficLight(3, 6, ROUGE);
+TrafficLight* FEU1 = createTrafficLight(4, 5, 200);
+TrafficLight* FEU2 = createTrafficLight(3, 6, 24);
 appendTrafficLightList(&Liste, FEU1);
 appendTrafficLightList(&Liste, FEU2);
-visualiserTrafficLightList(Liste);	
-roulement_feux(Liste);
-visualiserTrafficLightList(Liste);
+//visualiserTrafficLightList(Liste);	
+for(int i=0;i<300;i++){
+	roulement_feux(&Liste);
+	for(int j = 0; j<20000000; j++){} 
+}
+//visualiserTrafficLightList(Liste);
 
-OK
-
+//OK
 */
+
 
 
 // TESTS RELATIFS AUX VEHICULES 
@@ -155,7 +158,7 @@ showMatrix(MatriceDecision);
 
 */
 
-//affichageMap();
+
 
 system("setterm -cursor off");
 
@@ -173,6 +176,31 @@ textToMatrix(MatriceMap, "map1.txt");
 
 textToMatrix(MatriceDecision, "dec.txt");
 
+TrafficLightList* Liste=NULL;
+
+TrafficLight* FEU1 = createTrafficLight(20, 58, 12);//rouge inter
+TrafficLight* FEU2 = createTrafficLight(20, 85, 12);
+TrafficLight* FEU3 = createTrafficLight(20, 118,12);
+TrafficLight* FEU4 = createTrafficLight(26, 91, 12);
+TrafficLight* FEU5 = createTrafficLight(21, 92, 100);//rouge
+TrafficLight* FEU6 = createTrafficLight(25, 84, 100);
+TrafficLight* FEU7 = createTrafficLight(43, 47, 100);
+TrafficLight* FEU8 = createTrafficLight(49, 55, 100);
+TrafficLight* FEU9 = createTrafficLight(44, 57, 12);
+TrafficLight* FEU10 = createTrafficLight(48, 45, 12);
+
+
+appendTrafficLightList(&Liste, FEU1);
+appendTrafficLightList(&Liste, FEU2);
+appendTrafficLightList(&Liste, FEU3);
+appendTrafficLightList(&Liste, FEU4);
+appendTrafficLightList(&Liste, FEU5);
+appendTrafficLightList(&Liste, FEU6);
+appendTrafficLightList(&Liste, FEU7);
+appendTrafficLightList(&Liste, FEU8);
+appendTrafficLightList(&Liste, FEU9);
+appendTrafficLightList(&Liste, FEU10);
+
 BoatList* ListeDesBoats = NULL; 
 
 VehiculeList* ListeDesVehicules = NULL;
@@ -185,18 +213,22 @@ vehiculeSpawner(47, 1, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, 
 vehiculeSpawner(1, 86, SUD, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 vehiculeSpawner(22, 194, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 
-int i=0;
-for(i; i<300;i++)
-{
 
+
+int i=0;
+for(i; i<1000;i++)
+{
+	roulement_feux(&Liste, &MatriceDecision);
 	roulementBoatsPosition(MatriceMap, MatriceDecision, &ListeDesBoats);
 	roulementVehiculesPosition(MatriceMap, MatriceDecision, &ListeDesVehicules);
-	for(int j = 0; j<20000000; j++){} 
+	for(int j = 0; j<50000000; j++){} 
 	printf("\033[67;0H");
 	
 }
+
 printf("\033[67;0H");
 
+system("setterm -cursor on");
 	return 0;
 }
 
