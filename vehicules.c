@@ -51,16 +51,23 @@ int Obstacle(char** MatriceDecision, int i, int j)
 }
 
 
-void roulementVehiculesPosition(char ** MatriceMap,char** MatriceDecision, VehiculeList** ListeDesVehicules)
+void roulementVehiculesPosition(char ** MatriceMap,char*** MatriceDecision, VehiculeList** ListeDesVehicules)
 {
 	VehiculeList *tmp;
 	tmp = *ListeDesVehicules;
 	while (tmp != NULL)
 		{	
 			Position* NextPosition = positionFuture(tmp->Vehicule); // Afin de free plus tard
-			if(Obstacle(MatriceDecision, NextPosition->posX, NextPosition->posY)==0)
+			
+			if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] == 'f')
 			{
-				if((MatriceDecision[NextPosition->posX][NextPosition->posY]=='P')&&((tmp->Vehicule->Compteur)<8))
+				//affichagePartielVehicule(MatriceMap, tmp->Vehicule);
+				affichageVehicule(tmp->Vehicule);
+				tmp = tmp ->next;
+			}		
+			else
+			{
+				if(((*MatriceDecision)[NextPosition->posX][NextPosition->posY]=='P')&&((tmp->Vehicule->Compteur)<8))
 				{
 					affichageVehicule(tmp->Vehicule);
 					//ANIMATION DE REMPLISSAGE DU PLEIN?
@@ -69,10 +76,10 @@ void roulementVehiculesPosition(char ** MatriceMap,char** MatriceDecision, Vehic
 				}
 				else
 				{
-					MatriceDecision[tmp->Vehicule->posX][tmp->Vehicule->posY] = tmp->Vehicule->CaseDecision; //La ou la voiture etait devient de la route (place libre)
+					(*MatriceDecision)[tmp->Vehicule->posX][tmp->Vehicule->posY] = tmp->Vehicule->CaseDecision; //La ou la voiture etait devient de la route (place libre)
 					affichagePartielVehicule(MatriceMap, tmp->Vehicule);
 					setNewPositionVehicule(tmp->Vehicule); //On actualise la position de la voiture dans la structure 
-					tmp->Vehicule->CaseDecision = MatriceDecision[NextPosition->posX][NextPosition->posY]; // MAJ de la case decision
+					tmp->Vehicule->CaseDecision = (*MatriceDecision)[NextPosition->posX][NextPosition->posY]; // MAJ de la case decision
 					if(tmp->Vehicule->CaseDecision == 'E')
 					{
 						affichagePartielVehicule(MatriceMap, tmp->Vehicule);
@@ -82,17 +89,12 @@ void roulementVehiculesPosition(char ** MatriceMap,char** MatriceDecision, Vehic
 					else
 					{	
 						affichagePartielVehicule(MatriceMap, tmp->Vehicule);
-						setNewVehiculeDirection(tmp->Vehicule, MatriceDecision, *ListeDesVehicules); //On actualise la Direction du vehicule
-						MatriceDecision[NextPosition->posX][NextPosition->posY] = 'c'; //On actualise la MatricePositionVehicules pour signaler qu'une voiture se trouve maintenant a cette position
+						setNewVehiculeDirection(tmp->Vehicule, (*MatriceDecision), *ListeDesVehicules); //On actualise la Direction du vehicule
+						(*MatriceDecision)[NextPosition->posX][NextPosition->posY] = 'c'; //On actualise la MatricePositionVehicules pour signaler qu'une voiture se trouve maintenant a cette position
 						affichageVehicule(tmp->Vehicule);	
 						tmp = tmp->next;
 					}
 				}
-			}
-			else 
-			{
-				//affichagePartielVehicule(MatriceMap, tmp->Vehicule);
-				affichageVehicule(tmp->Vehicule);
 			}
 			free(NextPosition);
 		}

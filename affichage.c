@@ -43,6 +43,8 @@ void affichageMap(){
 				case 'h': couleur("32");printf("↑");couleur("0");break;
 				case 'b': couleur("32");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
+				case '+': couleur("32");printf("+");couleur("0");break;
+				//plage
 				case 'n': printf("⛱");break;
 				//caracters spéciaux:
 				case 'k': printf("═");break;
