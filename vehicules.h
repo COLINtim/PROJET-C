@@ -113,3 +113,5 @@ void appendHelicoptereList(HelicoptereList** ListeDesHelicopteres, Helicoptere* 
 HelicoptereList* helicoptereEater(HelicoptereList **List, Helicoptere* Helicoptere);
 
 void affichagePartielVehicule(char ** matrice, Vehicule * V);
+
+void animationDeRemplissage(Vehicule * V);

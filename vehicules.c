@@ -67,10 +67,10 @@ void roulementVehiculesPosition(char ** MatriceMap,char*** MatriceDecision, Vehi
 			}		
 			else
 			{
-				if(((*MatriceDecision)[NextPosition->posX][NextPosition->posY]=='P')&&((tmp->Vehicule->Compteur)<8))
+				if(((*MatriceDecision)[NextPosition->posX][NextPosition->posY]=='P')&&((tmp->Vehicule->Compteur)<31))
 				{
 					affichageVehicule(tmp->Vehicule);
-					//ANIMATION DE REMPLISSAGE DU PLEIN?
+					animationDeRemplissage(tmp->Vehicule);
 					tmp->Vehicule->Compteur = tmp->Vehicule->Compteur +1;
 					tmp = tmp->next;
 				}
@@ -512,5 +512,55 @@ Position* positionFutureHelicoptere(Helicoptere* Helico)
 
 */
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////:
+void animationDeRemplissage(Vehicule * V){
+	switch(V->Compteur){
+		case 0: printf("\033[%d;%dH🚶", V->posX-1, V->posY);
+				couleur("35");
+				printf("\033[%d;%dH", V->posX+1, V->posY-3);printf("╭═════╮");
+				printf("\033[%d;%dH", V->posX+2, V->posY-3);printf("╰═════╯");
+				couleur("0");
+				break;
 
+		case 1: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 2: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 3: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 4: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 5: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 6: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 7: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 8: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 9: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 10: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 11: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 12: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 13: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 14: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 15: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 16: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 17: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 18: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 19: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 20: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 21: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 22: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 23: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 24: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 25: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 26: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 27: couleur("35");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		case 28: couleur("34");printf("\033[%d;%dH╭", V->posX-1, V->posY-1);couleur("0");break;
+		
+		case 29: printf("\033[%d;%dH ", V->posX-1, V->posY-1);break;
+		case 30: printf("\033[%d;%dH ", V->posX-1, V->posY);
+				printf("\033[%d;%dH", V->posX+1, V->posY-3);printf("╭─────╮");
+				printf("\033[%d;%dH", V->posX+2, V->posY-3);printf("╰─────╯");
+				break;
+	}//🚶🏃‍🚶‍🏃
+	//on prend une voiture puis on fait l'animation en un certain nombre de frame comme pour la barriere.
+	//le personnage sort de son vehicule
+	//bouge
+	//fait le plein
+	//reviens vers sa porte
+	//rentre dans sa voiture
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

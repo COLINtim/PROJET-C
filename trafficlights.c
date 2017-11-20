@@ -146,6 +146,7 @@ void GestionDesFeux(TrafficLightList *List)
 	}
 }
 */
+/*
 void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramway * T2){
 	//test
 	if(T1->compteur2 >T2->compteur2){
@@ -248,3 +249,4 @@ void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramwa
 		(*MatriceDecision)[60][91]='o';
 	}
 }
+*/
