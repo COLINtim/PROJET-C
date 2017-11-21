@@ -181,6 +181,7 @@ void roulementBoatsPosition(char ** MatriceMap,char*** MatriceDecision, BoatList
 				if (tmp->Boat->CaseDecision == 'E')
 				{
 					affichagePartielBoat(MatriceMap,tmp->Boat);
+					(*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY]=tmp->Boat->CaseDecision;
 					tmp = boatEater(ListeDesBoats, tmp->Boat);
 				}
 				else

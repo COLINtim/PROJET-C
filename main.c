@@ -4,6 +4,7 @@
 #include "vehicules.h"
 #include "decision.h"
 #include "affichage.h"
+//#include "tramways.h"
 
 int main()
 {
@@ -209,7 +210,9 @@ BoatList* ListeDesBoats = NULL;
 
 VehiculeList* ListeDesVehicules = NULL;
 
-boatSpawner(21, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
+//TramwayList* ListeDesTramways = NULL;
+
+//boatSpawner(21, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
 boatSpawner(23, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
 boatSpawner(26, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
 
@@ -218,18 +221,37 @@ vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, 
 vehiculeSpawner(1, 86, SUD, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 
-//roulement_feux(&Liste, &MatriceDecision);
+//tramwaySpawner(56, 0, 1, 0, EST, &ListeDesTramways);
 
-
-int i=0;
-for(i; i<1000;i++)
-{
+int i;
+char touche;
+while(touche != 'q')
+{	
+	i++;
 	roulement_feux(&Liste, &MatriceDecision);
 	roulementBoatsPosition(MatriceMap, &MatriceDecision, &ListeDesBoats);
 	roulementVehiculesPosition(MatriceMap, &MatriceDecision, &ListeDesVehicules);
-	for(int j = 0; j<50000000; j++){} 
+	//roulementTramwaysPosition(MatriceMap, MatriceDecision, &ListeDesTramways);
+	if(i==30){
+		boatSpawner(26, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
+	}
+	if(i==50){
+		boatSpawner(23, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
+	}
+	if(i==60){
+		vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+	}
+	if(i==80){
+		vehiculeSpawner(1, 86, SUD, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+	}
+	if(i==100){
+		vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+		i=0;
+	}
+
+	for(int j = 0; j<10000000; j++){} 
 	printf("\033[67;0H");
-	
+	touche = key_pressed();
 }
 
 printf("\033[67;0H");
