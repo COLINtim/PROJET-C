@@ -7,7 +7,65 @@
 //#include "tramways.h"
 
 int main()
-{
+{	
+	system("clear");
+	
+	char key;
+	int affichage = 0;
+	affichageMenu("menu1.txt");
+	while(key != ' '){
+
+		if(key == 'z'){
+			affichage = 0;
+			affichageMenu("menu1.txt");
+		}
+
+		if(key == 's'){
+			affichage = 1;
+			affichageMenu("menu2.txt");
+		}
+		
+		for(int f=0; f<10000000;f++){}
+		printf("\033[68;0H");
+		key = key_pressed();
+	}
+	if(affichage == 1){
+		printf("\033[36;122H‡\n");
+		couleur("43");printf("\033[36;45H ");printf("\033[36;153H ");couleur("0");
+		for(int m=0;m<74;m++){
+			printf("\033[36;%dH",46+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
+			for(int j = 0; j<10000000; j++){} 
+		}
+		
+		
+		for (int m=0; m<30; m+=2){
+			printf("\033[36;%dH",123+m);couleur("31");printf("🔥\n");couleur("0");
+			for(int j = 0; j<20000000; j++){} 
+		}
+		
+	}else{
+		couleur("43");printf("\033[21;56H ");printf("\033[21;122H ");couleur("0");
+		for(int m=0;m<63;m++){
+			printf("\033[21;%dH",57+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
+			for(int j = 0; j<10000000; j++){} 
+		}
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/* TESTS RELATIFS à L'AFFICHAGE
 	system("clear");	
 	affichage();
@@ -228,10 +286,13 @@ char touche;
 while(touche != 'q')
 {	
 	i++;
+	
 	roulement_feux(&Liste, &MatriceDecision);
 	roulementBoatsPosition(MatriceMap, &MatriceDecision, &ListeDesBoats);
 	roulementVehiculesPosition(MatriceMap, &MatriceDecision, &ListeDesVehicules);
+
 	//roulementTramwaysPosition(MatriceMap, MatriceDecision, &ListeDesTramways);
+
 	if(i==30){
 		boatSpawner(26, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
 	}
@@ -244,12 +305,12 @@ while(touche != 'q')
 	if(i==80){
 		vehiculeSpawner(1, 86, SUD, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 	}
-	if(i==100){
+	if(i>=100){
 		vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 		i=0;
 	}
 
-	for(int j = 0; j<10000000; j++){} 
+	for(int j = 0; j<20000000; j++){} 
 	printf("\033[67;0H");
 	touche = key_pressed();
 }

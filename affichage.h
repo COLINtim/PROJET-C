@@ -6,6 +6,7 @@ void Key_pressed();// recuperation de la derniere touche pressée
 
 void affichageMap();//affiche la carte, l'arriere-plan
 
+void affichageMenu(char * nomDuFichier);
 /*
 void affichageTramwayHaut(Tramway);
 

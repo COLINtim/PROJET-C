@@ -59,7 +59,7 @@ void roulementVehiculesPosition(char ** MatriceMap,char*** MatriceDecision, Vehi
 		{	
 			Position* NextPosition = positionFuture(tmp->Vehicule); // Afin de free plus tard
 			
-			if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] == 'f')
+			if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] == 'f' || (*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='c')
 			{
 				//affichagePartielVehicule(MatriceMap, tmp->Vehicule);
 				affichageVehicule(tmp->Vehicule);

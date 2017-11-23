@@ -72,3 +72,59 @@ void affichageMap(){
 		fclose(fichier);
 	}else{printf("probleme d'affichage, le fichier est vide\n");}
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////:
+void affichageMenu(char * nomDuFichier){
+	FILE * fichier = NULL;
+	char caractere;
+	fichier =fopen(nomDuFichier,"r");
+	if(fichier!=NULL){
+		printf("\033[0;0H");
+		do{	
+			caractere=fgetc(fichier);
+			switch(caractere){
+
+				case 'k': printf("═");break;
+				case 'l': printf("╚");break;
+				case 'm': printf("║");break;
+				case 'o': printf("╝");break;
+				case 'q': printf("╗");break;
+				case 't': printf("╔");break;
+				
+				case 'v': printf("─");break;
+				case 'w': printf("│");break;
+				case 'z': printf("┐");break;
+				case 'a': printf("┌");break;
+				case 'c': printf("┘");break;
+				//case 'e': printf("└");break;
+				case 'f': printf("╮");break;
+				case 'i': printf("╯");break;
+				case 'j': printf("╰");break;
+				case '!': printf("╭");break;
+				case '%': printf("▒");break;
+				case '*': printf("▓");break;
+				case 'S': couleur("42");printf(" ");couleur("0");break;
+				case 'P': couleur("41");printf(" ");couleur("0");break;
+				//carateres menus
+				//case 'M': couleur("32");printf("🌼");couleur("0");break;//ansi color sur wikipedia ##############
+				/*case 'm': couleur("1;41");printf("▓");couleur("0");break;
+				case 'E': couleur("42");printf(" ");couleur("0");break;
+				case 'e': couleur("1;42");printf("▓");couleur("0");break;
+				case 'N': couleur("43");printf(" ");couleur("0");break;
+				case 'n': couleur("1;43");printf("▓");couleur("0");break;
+				case 'U': couleur("44");printf(" ");couleur("0");break;
+				case 'u': couleur("1;44");printf("▓");couleur("0");break;*/
+				//caracteres par default
+				default: printf("%c",caractere);break;
+			}
+		}while(caractere!=EOF);
+		fclose(fichier);
+	}/*
+		printf("\033[15;70H");printf("🔥🔥        🔥🔥  🔥🔥🔥🔥🔥🔥  🔥🔥       🔥🔥   🔥🔥      🔥🔥");
+		printf("\033[16;70H");printf("🔥🔥🔥     🔥🔥🔥  🔥          🔥🔥🔥     🔥🔥   🔥🔥      🔥🔥");
+		printf("\033[17;70H");printf("🔥🔥🔥🔥🔥🔥🔥🔥🔥  🔥          🔥🔥🔥🔥   🔥🔥    🔥🔥      🔥🔥");
+		printf("\033[18;70H");printf("🔥🔥  🔥🔥   🔥🔥  🔥🔥🔥🔥🔥   🔥🔥  🔥🔥  🔥🔥   🔥🔥      🔥🔥");
+		printf("\033[19;70H");printf("🔥🔥        🔥🔥  🔥          🔥🔥    🔥🔥🔥🔥   🔥🔥      🔥🔥");
+		printf("\033[20;70H");printf("🔥🔥        🔥🔥  🔥          🔥🔥     🔥🔥🔥    🔥🔥🔥🔥🔥🔥🔥");
+		printf("\033[21;70H");printf("🔥🔥        🔥🔥  🔥🔥🔥🔥🔥🔥  🔥🔥       🔥🔥    🔥🔥🔥🔥🔥🔥");
+		*/
+}
