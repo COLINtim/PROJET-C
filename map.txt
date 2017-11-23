@@ -1,7 +1,7 @@
-avvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvmxxxuxxxmvvvvvvvvvvvvvvvvvvmxxuxxmvvvvvvvvvvvvvvvvvvvvvvvvvvmxxxuxxxmvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvz
-w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm                                                                   w
-w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm                                                                   w
-w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm                                                                   w
+avvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvmxxxuxxxmvvvvvvvvvvvvvvvvvvmxxuxxmvvvvvvvvvvvvvvvvvvvvvvvvvvmxxxuxxxmvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvz COMMANDES: 
+w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm                                                                   w          
+w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm                                                                   w  MENU: M   
+w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm                                                                   w  QUITTER: Q
 w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm               RAVITAILLEMENT BATEAU                               w
 w #######################################################mxxxuxxxm################# mxxuxxm                          mxxxuxxxm                                                                   w
 w #######################################################mxxxuxxxm################# mxxuxxm               avvvvvvvvvvmxxxuxxxmvvvvvvvvvvvvvvvvvvvvvvvvvRRRvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvc

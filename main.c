@@ -30,23 +30,23 @@ int main()
 		key = key_pressed();
 	}
 	if(affichage == 1){
-		printf("\033[36;122H‡\n");
-		couleur("43");printf("\033[36;45H ");printf("\033[36;153H ");couleur("0");
-		for(int m=0;m<74;m++){
-			printf("\033[36;%dH",46+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
+		printf("\033[37;110H‡\n");
+		couleur("43");printf("\033[37;49H ");printf("\033[37;132H ");couleur("0");
+		for(int m=0;m<58;m++){
+			printf("\033[37;%dH",50+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
 			for(int j = 0; j<10000000; j++){} 
 		}
 		
 		
-		for (int m=0; m<30; m+=2){
-			printf("\033[36;%dH",123+m);couleur("31");printf("🔥\n");couleur("0");
+		for (int m=0; m<20; m+=2){
+			printf("\033[37;%dH",111+m);couleur("31");printf("🔥\n");couleur("0");
 			for(int j = 0; j<20000000; j++){} 
 		}
 		
 	}else{
-		couleur("43");printf("\033[21;56H ");printf("\033[21;122H ");couleur("0");
-		for(int m=0;m<63;m++){
-			printf("\033[21;%dH",57+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
+		couleur("43");printf("\033[21;57H ");printf("\033[21;121H ");couleur("0");
+		for(int m=0;m<61;m++){
+			printf("\033[21;%dH",58+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
 			for(int j = 0; j<10000000; j++){} 
 		}
 		
@@ -313,6 +313,7 @@ while(touche != 'q')
 	for(int j = 0; j<20000000; j++){} 
 	printf("\033[67;0H");
 	touche = key_pressed();
+	printf("\033[67;0H ");
 }
 
 printf("\033[67;0H");

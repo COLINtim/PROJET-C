@@ -83,27 +83,28 @@ void affichageMenu(char * nomDuFichier){
 			caractere=fgetc(fichier);
 			switch(caractere){
 
-				case 'k': printf("═");break;
-				case 'l': printf("╚");break;
-				case 'm': printf("║");break;
-				case 'o': printf("╝");break;
-				case 'q': printf("╗");break;
-				case 't': printf("╔");break;
+				case 'k': couleur("48;5;15");couleur("38;5;0");printf("═");couleur("0");break;
+				case 'l': couleur("48;5;15");couleur("38;5;0");printf("╚");couleur("0");break;
+				case 'm': couleur("48;5;15");couleur("38;5;0");printf("║");couleur("0");break;
+				case 'o': couleur("48;5;15");couleur("38;5;0");printf("╝");couleur("0");break;
+				case 'q': couleur("48;5;15");couleur("38;5;0");printf("╗");couleur("0");break;
+				case 't': couleur("48;5;15");couleur("38;5;0");printf("╔");couleur("0");break;
 				
-				case 'v': printf("─");break;
-				case 'w': printf("│");break;
-				case 'z': printf("┐");break;
-				case 'a': printf("┌");break;
-				case 'c': printf("┘");break;
+				case 'v': couleur("48;5;15");couleur("38;5;0");printf("─");couleur("0");break;
+				case 'w': couleur("48;5;15");couleur("38;5;0");printf("│");couleur("0");break;
+				case 'h': couleur("48;5;15");couleur("38;5;0");couleur("32");printf("↑");couleur("0");break;
+				case 'b': couleur("48;5;15");couleur("38;5;0");couleur("32");printf("↓");couleur("0");break;
+				
 				//case 'e': printf("└");break;
-				case 'f': printf("╮");break;
-				case 'i': printf("╯");break;
-				case 'j': printf("╰");break;
-				case '!': printf("╭");break;
+				case 'f': couleur("48;5;15");couleur("38;5;0");printf("╮");couleur("0");break;
+				case 'i': couleur("48;5;15");couleur("38;5;0");printf("╯");couleur("0");break;
+				case 'j': couleur("48;5;15");couleur("38;5;0");printf("╰");couleur("0");break;
+				case '!': couleur("48;5;15");couleur("38;5;0");printf("╭");couleur("0");break;
 				case '%': printf("▒");break;
 				case '*': printf("▓");break;
-				case 'S': couleur("42");printf(" ");couleur("0");break;
-				case 'P': couleur("41");printf(" ");couleur("0");break;
+				case 'D': couleur("48;5;15");couleur("38;5;0");printf("S");couleur("0");break;
+				case 'S': couleur("48;2;;255;");printf(" ");couleur("0");break;
+				case 'P': couleur("48;2;255;;");printf(" ");couleur("0");break;
 				//carateres menus
 				//case 'M': couleur("32");printf("🌼");couleur("0");break;//ansi color sur wikipedia ##############
 				/*case 'm': couleur("1;41");printf("▓");couleur("0");break;
@@ -114,7 +115,7 @@ void affichageMenu(char * nomDuFichier){
 				case 'U': couleur("44");printf(" ");couleur("0");break;
 				case 'u': couleur("1;44");printf("▓");couleur("0");break;*/
 				//caracteres par default
-				default: printf("%c",caractere);break;
+				default: couleur("48;5;15");couleur("38;5;0");printf("%c",caractere);couleur("0");break;
 			}
 		}while(caractere!=EOF);
 		fclose(fichier);
