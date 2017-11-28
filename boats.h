@@ -60,7 +60,7 @@ void setNewPositionBoat(Boat* Boat); //Met a jour la position du boat dans sa st
 
 void setNewBoatSens(Boat* Boat, char ** MatriceDecision, BoatList *ListeDesBoats); //Met a jour le Sens du boat en fonction du coefficient de la MatriceDecision sur lequel il se trouve
 
-void roulementBoatsPosition(char ** MatriceMap,char*** MatriceDecision, BoatList **List); // Met a jour toutes les positions des boat d'une BoatList
+void roulementBoatsPosition(char ** MatriceMap,char** MatriceDecision, BoatList **List); // Met a jour toutes les positions des boat d'une BoatList
 
 Coordonnees* positionFutureBoat(Boat* Boat); //Renvoie un struct Coordonnees qui est la position future du Boat
 

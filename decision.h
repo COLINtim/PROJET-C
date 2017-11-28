@@ -1,7 +1,7 @@
 #include "librairies.h"
 
-#define NBC 195
-#define NBL 66
+#define NBC 200
+#define NBL 70
 
 char** matrixInit(); //Initialise une Matrice de taille (NBC,NBL)
 

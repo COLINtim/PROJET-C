@@ -4,68 +4,13 @@
 #include "vehicules.h"
 #include "decision.h"
 #include "affichage.h"
-//#include "tramways.h"
+#include "pietons.h"
+#include "tramways.h"
+#include "helicopteres.h"
+#include "lapins.h"
 
 int main()
-{	
-	system("clear");
-	
-	char key;
-	int affichage = 0;
-	affichageMenu("menu1.txt");
-	while(key != ' '){
-
-		if(key == 'z'){
-			affichage = 0;
-			affichageMenu("menu1.txt");
-		}
-
-		if(key == 's'){
-			affichage = 1;
-			affichageMenu("menu2.txt");
-		}
-		
-		for(int f=0; f<10000000;f++){}
-		printf("\033[68;0H");
-		key = key_pressed();
-	}
-	if(affichage == 1){
-		printf("\033[37;110H‡\n");
-		couleur("43");printf("\033[37;49H ");printf("\033[37;132H ");couleur("0");
-		for(int m=0;m<58;m++){
-			printf("\033[37;%dH",50+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
-			for(int j = 0; j<10000000; j++){} 
-		}
-		
-		
-		for (int m=0; m<20; m+=2){
-			printf("\033[37;%dH",111+m);couleur("31");printf("🔥\n");couleur("0");
-			for(int j = 0; j<20000000; j++){} 
-		}
-		
-	}else{
-		couleur("43");printf("\033[21;57H ");printf("\033[21;121H ");couleur("0");
-		for(int m=0;m<61;m++){
-			printf("\033[21;%dH",58+m);couleur("42");printf(" ");couleur("0");printf("🚘\n");
-			for(int j = 0; j<10000000; j++){} 
-		}
-		
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{
 	/* TESTS RELATIFS à L'AFFICHAGE
 	system("clear");	
 	affichage();
@@ -78,20 +23,17 @@ int main()
 // TESTS RELATIFS AUX FEUX
 /*
 TrafficLightList* Liste=NULL;
-TrafficLight* FEU1 = createTrafficLight(4, 5, 200);
-TrafficLight* FEU2 = createTrafficLight(3, 6, 24);
+TrafficLight* FEU1 = createTrafficLight(4, 5, VERT);
+TrafficLight* FEU2 = createTrafficLight(3, 6, ROUGE);
 appendTrafficLightList(&Liste, FEU1);
 appendTrafficLightList(&Liste, FEU2);
-//visualiserTrafficLightList(Liste);	
-for(int i=0;i<300;i++){
-	roulement_feux(&Liste);
-	for(int j = 0; j<20000000; j++){} 
-}
-//visualiserTrafficLightList(Liste);
+visualiserTrafficLightList(Liste);	
+roulement_feux(Liste);
+visualiserTrafficLightList(Liste);
 
-//OK
+OK
+
 */
-
 
 
 // TESTS RELATIFS AUX VEHICULES 
@@ -217,11 +159,31 @@ showMatrix(MatriceDecision);
 
 */
 
+//affichageMap();
 
+printf("\e[?25l");
+/*
+system("cat Accueil.txt");
 
-system("setterm -cursor off");
+int k;
+int z;
+for(k = 0; k< 100 ; k++)
+	{
+		for(z = 0; z<6000000; z++)
+		{
+			if (z%60000 == 0)
+			{
+					printf("\r Loading ... %d/100",k);
+			}
+		}
+	}
+*/
+/*
+system("xdotool key CTRL+underscore");
+system("xdotool key CTRL+underscore");
+system("xdotool key CTRL+underscore");
+*/
 
-system("clear");
 
 affichageMap();
 
@@ -231,9 +193,9 @@ char ** MatriceDecision = matrixInit(NBC, NBL);
 
 char ** MatriceMap = matrixInit(NBC,NBL);
 
-textToMatrix(MatriceMap, "map1.txt");
-
 textToMatrix(MatriceDecision, "dec.txt");
+
+textToMatrix(MatriceMap, "map1.txt");
 
 TrafficLightList* Liste=NULL;
 
@@ -260,65 +222,73 @@ appendTrafficLightList(&Liste, FEU8);
 appendTrafficLightList(&Liste, FEU9);
 appendTrafficLightList(&Liste, FEU10);
 
-//showMatrix(MatriceDecision);
-//printf("%c", MatriceDecision[20][60]);
-
-
 BoatList* ListeDesBoats = NULL; 
 
 VehiculeList* ListeDesVehicules = NULL;
 
-//TramwayList* ListeDesTramways = NULL;
+HelicoptereList* ListeDesHelicopteres = NULL;
 
-//boatSpawner(21, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
-boatSpawner(23, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
+TramwayList* ListeDesTramways = NULL;
+
+PietonList* ListeDesPietons = NULL;
+
+LapinList* ListeDesLapins = NULL;
+
+boatSpawner(22, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
+
 boatSpawner(26, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
 
-vehiculeSpawner(26, 150, SUD, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
-vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
-vehiculeSpawner(1, 86, SUD, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
-vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+vehiculeSpawner(22, 194, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 
-//tramwaySpawner(56, 0, 1, 0, EST, &ListeDesTramways);
+vehiculeSpawner(24, 130, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 
-int i;
-char touche;
-while(touche != 'q')
-{	
-	i++;
-	
-	roulement_feux(&Liste, &MatriceDecision);
-	roulementBoatsPosition(MatriceMap, &MatriceDecision, &ListeDesBoats);
-	roulementVehiculesPosition(MatriceMap, &MatriceDecision, &ListeDesVehicules);
+helicoptereSpawner(3, 3, 'c', &ListeDesHelicopteres);
 
-	//roulementTramwaysPosition(MatriceMap, MatriceDecision, &ListeDesTramways);
+pietonSpawner(3, 96, SUD, &ListeDesPietons);
 
-	if(i==30){
-		boatSpawner(26, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
-	}
-	if(i==50){
-		boatSpawner(23, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats);
-	}
-	if(i==60){
-		vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
-	}
-	if(i==80){
-		vehiculeSpawner(1, 86, SUD, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
-	}
-	if(i>=100){
-		vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
-		i=0;
-	}
+lapinSpawner(37, 21, &ListeDesLapins);
 
-	for(int j = 0; j<20000000; j++){} 
-	printf("\033[67;0H");
-	touche = key_pressed();
-	printf("\033[67;0H ");
+//tramwaySpawner(65, 114, 1, 0, NORD, &ListeDesTramways);
+tramwaySpawner(56, 0, 0, EST, &ListeDesTramways);
+
+int i = 0;
+
+for(i=0; i<100; i++)
+{
+roulementPietonsPosition(MatriceMap, MatriceDecision, &ListeDesPietons);
+roulementBoatsPosition(MatriceMap, MatriceDecision, &ListeDesBoats);
+roulementVehiculesPosition(MatriceMap, &MatriceDecision, &ListeDesVehicules);
+roulementHelicopteresPosition(MatriceMap, MatriceDecision, &ListeDesHelicopteres);
+roulement_feux(&Liste, &MatriceDecision);
+//roulementTramwaysPosition(MatriceMap, MatriceDecision, &ListeDesTramways);
+//boatSpawner(21+rand()%6, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats); //A ce rythme là c'est la bataille navale lol
+
+if(i==3)
+{
+	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+}
+if(i==10)
+{
+	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+}
+if(i==30)
+{
+	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+}
+if(i==90)
+{
+	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
+	i=0;
+}
+if(i%15 == 0)
+{
+	roulementLapinsPosition(MatriceMap, MatriceDecision, &ListeDesLapins);
 }
 
-printf("\033[67;0H");
-
-system("setterm -cursor on");
+	//tramwaySpawner(65, 114, j+1, 0, NORD, &ListeDesTramways);	
+for(int j = 0; j<20000000; j++){} 
+}
 	return 0;
 }
 
+//57 119

@@ -23,6 +23,8 @@ typedef enum Direction Direction;
 
 #endif
 
+
+
 	typedef struct Tramway
 {
 	int posX;
@@ -30,9 +32,9 @@ typedef enum Direction Direction;
 	int vitesse;
 	char CaseDecision;
 	Direction Direction;
-	int numerowagon;
 	int compteur;
 	int compteur2;
+	int virage;
 } Tramway;
 
 typedef struct TramwayList // Liste chainee de tramways pour la gestion du trafic
@@ -41,13 +43,13 @@ typedef struct TramwayList // Liste chainee de tramways pour la gestion du trafi
 	struct TramwayList *next;
 } TramwayList;
 
-void tramwaySpawner(int posX, int posY, int numerowagon, int compteur, Direction Direction, TramwayList** ListeDesTramways); //Fait apparaitre un Tramway (Spawner)
+void tramwaySpawner(int posX, int posY, int compteur, Direction Direction, TramwayList** ListeDesTramways); //Fait apparaitre un Tramway (Spawner)
 
 void appendTramwayList(TramwayList** ListeDesTramways, Tramway* Tram); // Fonction ajoutant un wagon de Tramway à une Liste de Tramways
 
 TramwayList* tramwayEater(TramwayList **List, Tramway* Tramway); // Eater de Tramway
 
-void affichageTramway(Tramway* Tram); // Affiche un wagon de Tramway
+void affichageTramway(char** MatriceMap, Tramway* Tram); // Affiche un wagon de Tramway
 
 void roulementTramwaysPosition(char** MatriceMap, char** MatriceDecision, TramwayList** ListeDesTramways); // Fait avancer tous les Tramways présents dans la ListeDesTramways
 
@@ -59,4 +61,4 @@ int ObstacleTramway(char ** MatriceDecision, int i, int j); //Fonction faisant l
 
 void affichagePartielTramway(char ** MatriceMap, Tramway * Tramway);
 
-void stationTramway(Tramway* Tramway); 
+int testPositionTramway(Tramway* Tramway);

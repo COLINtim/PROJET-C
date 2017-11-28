@@ -130,14 +130,14 @@ Coordonnees* positionFutureBoat(Boat* Boat)
 	}
 }
 
-void roulementBoatsPosition(char ** MatriceMap,char*** MatriceDecision, BoatList** ListeDesBoats)
+void roulementBoatsPosition(char ** MatriceMap,char** MatriceDecision, BoatList** ListeDesBoats)
 {
 	BoatList *tmp;
 	tmp = *ListeDesBoats;
 	while (tmp !=NULL)
 	{
 		Coordonnees* NextCoordonnees = positionFutureBoat(tmp->Boat); //astuce pour bien gerer la memoire et free apres
-		if((*MatriceDecision)[NextCoordonnees->posX][NextCoordonnees->posY]=='L')
+		if(MatriceDecision[NextCoordonnees->posX][NextCoordonnees->posY]=='L')
 		{
 			affichageBoat(tmp->Boat);
 			tmp = tmp->next;
@@ -146,20 +146,20 @@ void roulementBoatsPosition(char ** MatriceMap,char*** MatriceDecision, BoatList
 		{
 			if(tmp->Boat->CaseDecision == 'D') // S'il passe sous un pont
 			{
-					(*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY] = tmp->Boat->CaseDecision; //On remet le D à sa place
-					affichagePartielBoat(MatriceMap,tmp->Boat);
+					MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = tmp->Boat->CaseDecision; //On remet le D à sa place
+					affichagePartielBoat(MatriceMap,tmp->Boat); 
 					setNewPositionBoat(tmp->Boat); // Mise a jour de la position du Boat dans sa structure
 					tmp->Boat->CaseDecision = 'F'; // Mode fantome, le bateau est sous le pont
 					tmp = tmp->next;
 			}
 			else if(tmp->Boat->CaseDecision == 'F') //Mode fantome, le bateau est sous le pont
 			{
-					if((*MatriceDecision)[NextCoordonnees->posX][NextCoordonnees->posY]=='A')
+					if(MatriceDecision[NextCoordonnees->posX][NextCoordonnees->posY]=='A')
 					{	
 						affichagePartielBoat(MatriceMap,tmp->Boat);
 						setNewPositionBoat(tmp->Boat); // Mise a jour de la position du Boat dans sa structure
-						tmp->Boat->CaseDecision = (*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY]; //Mise à jour de sa CaseDecision
-						(*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY] = 'L'; // Mise a jour de la MatriceDecison
+						tmp->Boat->CaseDecision = MatriceDecision[tmp->Boat->posX][tmp->Boat->posY]; //Mise à jour de sa CaseDecision
+						MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = 'L'; // Mise a jour de la MatriceDecison
 						affichageBoat(tmp->Boat);
 						tmp = tmp->next;
 					}
@@ -171,18 +171,19 @@ void roulementBoatsPosition(char ** MatriceMap,char*** MatriceDecision, BoatList
 			else
 			{
 
-			(*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY] = tmp->Boat->CaseDecision; //La case ou se trouvait le bateau redevient de l'eau
+			MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = tmp->Boat->CaseDecision; //La case ou se trouvait le bateau redevient de l'eau
 			affichagePartielBoat(MatriceMap,tmp->Boat);
 			setNewPositionBoat(tmp->Boat); // Mise a jour de la position du Boat dans sa structure
-			tmp->Boat->CaseDecision = (*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY]; //Mise à jour de sa CaseDecision
-			setNewBoatSens(tmp->Boat, (*MatriceDecision), *ListeDesBoats); //Mise a jour de la Direction du Bateau en fonction de la ou il se situe sur la MatriceDecison
-			(*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY] = 'L'; // Mise a jour de la MatriceDecison
+			tmp->Boat->CaseDecision = MatriceDecision[tmp->Boat->posX][tmp->Boat->posY]; //Mise à jour de sa CaseDecision
+			setNewBoatSens(tmp->Boat, MatriceDecision, *ListeDesBoats); //Mise a jour de la Direction du Bateau en fonction de la ou il se situe sur la MatriceDecison
+			MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = 'L'; // Mise a jour de la MatriceDecison
 			affichageBoat(tmp->Boat);
 				if (tmp->Boat->CaseDecision == 'E')
 				{
 					affichagePartielBoat(MatriceMap,tmp->Boat);
-					(*MatriceDecision)[tmp->Boat->posX][tmp->Boat->posY]=tmp->Boat->CaseDecision;
+					MatriceDecision[tmp->Boat->posX][tmp->Boat->posY] = 'E';
 					tmp = boatEater(ListeDesBoats, tmp->Boat);
+					couleur("46");printf("\033[%d;%dH \n",NextCoordonnees->posX,NextCoordonnees->posY);couleur("0");
 				}
 				else
 				{
@@ -197,19 +198,19 @@ void roulementBoatsPosition(char ** MatriceMap,char*** MatriceDecision, BoatList
 void affichageBoat(Boat* B){//⛴
 	switch(B->custom){
 		case 'v': 
-		couleur("31");
+		couleur("30");
 		couleur("46");
 			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
 		case 'o': 
-		couleur("32");
+		couleur("30");
 		couleur("46");
 			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
 		case 'r': 
-		couleur("33");
+		couleur("30");
 		couleur("46");
 			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
@@ -273,7 +274,7 @@ void affichagePartielBoat(char ** matrice, Boat * B){
 				case 'b': couleur("32");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
 				case 'n': printf("⛱");break;
-				//caracters spéciaux:
+				//caracteres spéciaux:
 				case 'k': printf("═");break;
 				case 'l': printf("╚");break;
 				case 'm': printf("║");break;
@@ -292,10 +293,13 @@ void affichagePartielBoat(char ** matrice, Boat * B){
 				case '!': printf("╭");break;
 				case '%': printf("▒");break;
 				case '*': printf("▓");break;
+				case 'H': couleur("32");printf("▓");couleur("0");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;
 		}
 	}			
 
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

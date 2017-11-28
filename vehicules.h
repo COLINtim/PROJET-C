@@ -2,7 +2,6 @@
 #define FEU_EST_ROUGE 'f'
 #define CAR_IS_HERE 'c'
 
-#define vehicules
 
 enum type	// Enumeration des differents types de vehicules
 {
@@ -35,6 +34,8 @@ enum Direction // Enumeration des directions possibles pour une entité
 
 typedef enum Direction Direction;
 
+#define direction
+
 typedef struct Position
 {
 	int posX;
@@ -42,8 +43,7 @@ typedef struct Position
 			
 } Position;
 
-#define VEHICULES
-
+#define position
 	typedef struct Vehicule
 {
 	Direction Direction;
@@ -53,28 +53,17 @@ typedef struct Position
 	int vitesse;
 	char custom;
 	char CaseDecision;
-	Carburant Carburant;		
+	Carburant Carburant;
+	int virage;	
+
 } Vehicule;
 
-	typedef struct Helicoptere
-{
-	int posX;
-	int posY;
-	char axe;
-} Helicoptere;
 
 typedef struct VehiculeList // Liste chainee de vehicules pour la gestion du trafic
 {
 	Vehicule* Vehicule;
 	struct VehiculeList *next;
 } VehiculeList;
-
-typedef struct HelicoptereList // Liste chainee de vehicules pour la gestion du trafic
-{
-	Helicoptere* Helicoptere;
-	struct Helicoptere *next;
-} HelicoptereList;
-
 
 Position* positionFuture(Vehicule* vehicule); //Fonction renvoyant un struct Position (qui sera la position de vehicule à la frame suivante) en fonction de sa Direction
 
@@ -102,15 +91,7 @@ int Obstacle(char** MatriceDecision, int i, int j);
 
 void affichageVehicule(Vehicule* V); //Fonction d'affichage de Vehicule
 
-char AleatoireCustomVehicule();
-
-void helicoptereSpawner(int posX, int posY, HelicoptereList** ListeDesHelicopteres);
-
-void roulementHelicopteresPosition(HelicoptereList* ListeDesHelicopteres);
-
-void appendHelicoptereList(HelicoptereList** ListeDesHelicopteres, Helicoptere* Helico);
-
-HelicoptereList* helicoptereEater(HelicoptereList **List, Helicoptere* Helicoptere);
+char AleatoireCustomVehicule(); // Renvoie un skin de vehicule aléatoirement
 
 void affichagePartielVehicule(char ** matrice, Vehicule * V);
 

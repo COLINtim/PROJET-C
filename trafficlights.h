@@ -62,12 +62,10 @@ double visualiserChrono(double* montre);			//Fonction permettant de regarder le 
 
 void roulement_feux(TrafficLightList ** List, char *** MatriceDecision);		//Fonction prenant en argument une liste de feu et incrémentant leur état de 1 unité. (vert => orange, etc ... modulo 4)
 
-void modificationDeMatrice(TrafficLight * T, char *** MatriceDecision, char caractere);
-
 void modificationDuFeu(TrafficLight * T, char *** MatriceDecision, char caractere);
 
 //void gestionDesFeux(TrafficLightList *List); //Fonction gérant les feux de la map en fonction d'un chronomètre qu'elle initialise. Ici elle ne prend en argument qu'une seule Liste de Feux, mais on peut la généraliser pour qu'elle en prenne plus. Tout dépend du choix qu'on fait sur la gestion des feux : 2 familles de feux, 1 famille de feux par carrefour ... etc
 
 void affichageFeu(TrafficLight* trafficLight); //Fonction d'affichage de trafficlights
 
-//void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramway * T2);
+void modificationDeMatrice(TrafficLight * T, char *** MatriceDecision, char caractere);
