@@ -163,6 +163,10 @@ showMatrix(MatriceDecision);
 
 printf("\e[?25l");
 /*
+printf("\033[10;10H🚘");
+printf("\033[10;8H🚘");
+printf("\033[15;0H");
+
 system("cat Accueil.txt");
 
 int k;
@@ -263,20 +267,24 @@ roulement_feux(&Liste, &MatriceDecision);
 //roulementTramwaysPosition(MatriceMap, MatriceDecision, &ListeDesTramways);
 //boatSpawner(21+rand()%6, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats); //A ce rythme là c'est la bataille navale lol
 
-if(i==3)
+if(i==1)
 {
+	vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 }
 if(i==10)
 {
+	vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 }
 if(i==30)
 {
+	vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 }
 if(i==90)
 {
+	vehiculeSpawner(22, 193, OUEST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 	vehiculeSpawner(47, 2, EST, FAIBLE, AleatoireCustomVehicule(), MatriceDecision, &ListeDesVehicules);
 	i=0;
 }
