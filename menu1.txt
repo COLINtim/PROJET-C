@@ -23,14 +23,14 @@ w~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 w                                                                                                                                                                                                w
 w                                                                                                                                                                                                w
 w                                                                                                                                                                                                w
-w                                                         RRRRRRRR\ RR\      RR\   RR\ RRRRRR\ RRRRRRR\  RRRRRRRR\                                                                               w
-w                                                         RR  _____|RR |     RR |  RR |\_RR  _|RR  __RR\ RR  _____|                                                                              w
-w                                                         RR |      RR |     RR |  RR |  RR |  RR |  RR |RR | _|                                                                                 w
-w                                                         RRRRR\    RR |     RR |  RR |  RR |  RR |  RR |RRRRR\                                                                                  w
-w                                                         RR  __|   RR |     RR |  RR |  RR |  RR |  RR |RR  __|R\                                                                               w
-w                                                         RR |      RR |     RR |  RR |  RR |  RR |  RR |RR |    _|                                                                              w
-w                                                         RR |      RRRRRRRR\\RRRRRR  |RRRRRR\ RRRRRRR  |RRRRRRRR\                                                                               w
-w                                                         \__|      \________|\______/ \______|\_______/ \________|                                                                              w
+w                                               KK\       RRRRRRRR\ RR\      RR\   RR\ RRRRRR\ RRRRRRR\  RRRRRRRR\        KK\                                                                    w
+w                                               \KK\      RR  _____|RR |     RR |  RR |\_RR  _|RR  __RR\ RR  _____|      KK  |                                                                   w
+w                                                \KK\     RR |      RR |     RR |  RR |  RR |  RR |  RR |RR | _|        KK  /                                                                    w
+w                                                 \KK\    RRRRR\    RR |     RR |  RR |  RR |  RR |  RR |RRRRR\        KK  /                                                                     w
+w                                                 KK  |   RR  __|   RR |     RR |  RR |  RR |  RR |  RR |RR  __|R\     \KK<                                                                      w
+w                                                KK  /    RR |      RR |     RR |  RR |  RR |  RR |  RR |RR |    _|     \KK\                                                                     w
+w                                               KK  /     RR |      RRRRRRRR\\RRRRRR  |RRRRRR\ RRRRRRR  |RRRRRRRR\       \KK\                                                                    w
+w                                               \__/      \__|      \________|\______/ \______|\_______/ \________|       \__|                                                                   w
 w                                                                                                                                                                                                w
 w                                                                                                                                                                                                w
 w                                                                                                                                                                                                w
