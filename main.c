@@ -73,6 +73,9 @@ int main()
 	appendTrafficLightList(&Liste, FEU9);
 	appendTrafficLightList(&Liste, FEU10);
 
+	TramwayEater* TramwayEater1 = tramwayEaterInit();
+	TramwayEater* TramwayEater2 = tramwayEaterInit();
+
 	BoatList* ListeDesBoats = NULL; 
 
 	VehiculeList* ListeDesVehicules = NULL;
@@ -99,8 +102,8 @@ int main()
 
 	lapinSpawner(37, 21, &ListeDesLapins);
 
-	//tramwaySpawner(65, 114, 1, 0, NORD, &ListeDesTramways);
-	tramwaySpawner(56, 0, 0, EST, &ListeDesTramways);
+	tramwaySpawner(67, 114, NORD, &ListeDesTramways);
+	tramwaySpawner(56, 0, EST, &ListeDesTramways);
 
 	int i = 0;
 	char touche;
@@ -118,13 +121,23 @@ int main()
 			}
 		}
 		i++;
+
 		//roulementPietonsPosition(MatriceMap, MatriceDecision, &ListeDesPietons);
+
 		roulementBoatsPosition(MatriceMap, MatriceDecision, &ListeDesBoats);
+
 		roulementVehiculesPosition(MatriceMap, &MatriceDecision, &ListeDesVehicules);
+
 		roulementHelicopteresPosition(MatriceMap, MatriceDecision, &ListeDesHelicopteres);
+
 		roulement_feux(&Liste, &MatriceDecision);
-		//roulementTramwaysPosition(MatriceMap, MatriceDecision, &ListeDesTramways);
-		//boatSpawner(21+rand()%6, 1, DROITE, AleatoireCustomBoat(), MatriceDecision, &ListeDesBoats); //A ce rythme là c'est la bataille navale lol
+		if(compteurDeTramways(&ListeDesTramways) == 2){
+			feuxDeTram(&MatriceDecision, MatriceMap,ListeDesTramways->Tramway , ListeDesTramways->next->Tramway);
+		}
+
+		roulementTramwaysPosition(MatriceMap, MatriceDecision, &ListeDesTramways, TramwayEater1, TramwayEater2);
+		eaterAffichage(TramwayEater1,1);
+		eaterAffichage(TramwayEater2,2);
 
 		if(i==1)
 		{
@@ -159,7 +172,7 @@ int main()
 		printf("\033[67;0H ");
 	}
 
-	system("setterm -sursor off");
+	system("setterm -cursor off");
 	return 0;
 }
 

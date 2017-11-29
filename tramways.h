@@ -23,7 +23,9 @@ typedef enum Direction Direction;
 
 #endif
 
+#ifndef tram
 
+#define tram
 
 	typedef struct Tramway
 {
@@ -37,13 +39,20 @@ typedef enum Direction Direction;
 	int virage;
 } Tramway;
 
+#endif
 typedef struct TramwayList // Liste chainee de tramways pour la gestion du trafic
 {
 	Tramway* Tramway;
 	struct TramwayList *next;
 } TramwayList;
 
-void tramwaySpawner(int posX, int posY, int compteur, Direction Direction, TramwayList** ListeDesTramways); //Fait apparaitre un Tramway (Spawner)
+typedef struct TramwayEater
+{
+	int decr;
+	
+} TramwayEater; 
+
+void tramwaySpawner(int posX, int posY, Direction Direction, TramwayList** ListeDesTramways); //Fait apparaitre un Tramway (Spawner) //Fait apparaitre un Tramway (Spawner)
 
 void appendTramwayList(TramwayList** ListeDesTramways, Tramway* Tram); // Fonction ajoutant un wagon de Tramway à une Liste de Tramways
 
@@ -51,7 +60,7 @@ TramwayList* tramwayEater(TramwayList **List, Tramway* Tramway); // Eater de Tra
 
 void affichageTramway(char** MatriceMap, Tramway* Tram); // Affiche un wagon de Tramway
 
-void roulementTramwaysPosition(char** MatriceMap, char** MatriceDecision, TramwayList** ListeDesTramways); // Fait avancer tous les Tramways présents dans la ListeDesTramways
+void roulementTramwaysPosition(char** MatriceMap, char** MatriceDecision, TramwayList** ListeDesTramways, TramwayEater* TramwayEater1, TramwayEater* TramwayEater2); // Fait avancer tous les Tramways présents dans la ListeDesTramways
 
 void setNewTramwayDirection(Tramway* Tramway, char ** MatriceDecision, TramwayList *ListeDesTramways); // Met a jour la position du Tramway dans sa structure
 
@@ -62,3 +71,11 @@ int ObstacleTramway(char ** MatriceDecision, int i, int j); //Fonction faisant l
 void affichagePartielTramway(char ** MatriceMap, Tramway * Tramway);
 
 int testPositionTramway(Tramway* Tramway);
+
+TramwayEater* tramwayEaterInit();
+
+void eaterAffichage(TramwayEater* TramwayEater, int NumeroDeLigne);
+
+void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramway * T2);
+
+int compteurDeTramways(TramwayList** ListeDesTramways);
