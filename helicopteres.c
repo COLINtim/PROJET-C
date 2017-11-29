@@ -191,7 +191,8 @@ void affichagePartielHelicoptere(char ** MatriceMap, Helicoptere * Helicoptere)
 		printf("\033[%d;%dH",Helicoptere->posX,Helicoptere->posY+i);
 		
 		switch(caractere){
-				case '#': couleur("45");printf("♨");couleur("0");break;
+				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
+				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
 				//caracteres liés a la route

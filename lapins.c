@@ -47,7 +47,8 @@ LapinList* lapinEater(LapinList **List, Lapin* Lapin)
 
 void affichageLapin(Lapin* Lapin)
 {
-		couleur("37");
+		couleur("38;5;15");
+		couleur("48;5;22");
 		printf("\033[%d;%dH🐇",Lapin->posX,Lapin->posY);
 		couleur("0");
 }
@@ -59,7 +60,8 @@ void affichagePartielLapin(char** MatriceMap, Lapin* Lapin)
 	printf("\033[%d;%dH",Lapin->posX,Lapin->posY);
 	switch(caractere) //a epurer, le champ des lapins ne contient pas autant de caracteres 
 			{
-				case '#': couleur("45");printf("♨");couleur("0");break;
+				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
+				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
 				//caracteres liés a la route
