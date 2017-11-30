@@ -57,5 +57,5 @@ Position* positionFuturePieton(Pieton* Pieton);
 
 int ObstaclePieton(char ** MatriceDecision, int i, int j);
 
-void roulementPietonsPosition(char ** MatriceMap, char** MatriceDecision, PietonList** ListeDesPietons);
+void roulementPietonsPosition(char ** MatriceMap, char*** MatriceDecision, PietonList** ListeDesPietons);
 

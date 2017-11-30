@@ -461,7 +461,7 @@ void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramwa
 			switch(T1->compteur2){
 
 				case 0: couleur("41"); printf("\033[54;85H ");printf("\033[60;91H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[61][90]='f';
+						(*MatriceDecision)[54][86]='f';(*MatriceDecision)[60][90]='f';
 						break;
 				case 1: couleur("33"); printf("\033[55;86H─");printf("\033[59;90H─");couleur("0");break;
 				case 2: couleur("33"); printf("\033[55;87H─");printf("\033[59;89H─");couleur("0");break;
@@ -482,7 +482,7 @@ void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramwa
 			switch(T2->compteur2){
 
 				case 0: couleur("41"); printf("\033[54;85H ");printf("\033[60;91H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[61][90]='f';
+						(*MatriceDecision)[54][86]='f';(*MatriceDecision)[60][90]='f';
 						break;
 				case 1: couleur("33"); printf("\033[55;86H─");printf("\033[59;90H─");couleur("0");break;
 				case 2: couleur("33"); printf("\033[55;87H─");printf("\033[59;89H─");couleur("0");break;
@@ -506,7 +506,7 @@ void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramwa
 			switch(T2->compteur2){
 
 				case 0: couleur("41"); printf("\033[54;85H ");printf("\033[60;91H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[61][90]='f';
+						(*MatriceDecision)[54][86]='f';(*MatriceDecision)[60][90]='f';
 						break;
 				case 1: couleur("33"); printf("\033[55;86H─");printf("\033[59;90H─");couleur("0");break;
 				case 2: couleur("33"); printf("\033[55;87H─");printf("\033[59;89H─");couleur("0");break;
@@ -527,7 +527,7 @@ void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramwa
 			switch(T1->compteur2){
 
 				case 0: couleur("41"); printf("\033[54;85H ");printf("\033[60;91H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[61][90]='f';
+						(*MatriceDecision)[54][86]='f';(*MatriceDecision)[60][90]='f';
 						break;
 				case 1: couleur("33"); printf("\033[55;86H─");printf("\033[59;90H─");couleur("0");break;
 				case 2: couleur("33"); printf("\033[55;87H─");printf("\033[59;89H─");couleur("0");break;
@@ -550,7 +550,7 @@ void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramwa
 		printf("\033[60;91H ");
 		couleur("0");
 		(*MatriceDecision)[54][86]='o';
-		(*MatriceDecision)[60][89]='o';
+		(*MatriceDecision)[60][90]='o';
 	}
 }
 

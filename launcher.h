@@ -27,3 +27,5 @@ void randomSpawnBoat(char ** MatriceDecision, BoatList** ListeDesBoats);
 void randomSpawnLapin(LapinList** ListeDesLapins);
 
 void randomSpawnHelicoptere(HelicoptereList** ListeDesHelicopteres);
+
+void animation1(VehiculeList ** ListeDesVehicules, TramwayList ** ListeTramways, char *** MatriceDecision, char ** MatriceMap);

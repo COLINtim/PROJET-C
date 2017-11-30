@@ -107,10 +107,10 @@ void feuxPietons(char *** MatriceDecision){
 	}else{
 		(*MatriceDecision)[20][66] = 'o';
 	}
-	if((*MatriceDecision)[20][87] == 'o'){
-		(*MatriceDecision)[20][89] = '+';
+	if((*MatriceDecision)[20][86] == 'o'){
+		(*MatriceDecision)[20][91] = '+';
 	}else{
-		(*MatriceDecision)[20][89] = 'o';
+		(*MatriceDecision)[20][91] = 'o';
 	}
 	if((*MatriceDecision)[22][93] == 'o'){
 		(*MatriceDecision)[25][93] = '+';

@@ -149,6 +149,9 @@ void lancementModeSafe(){
 
 	LapinList* ListeDesLapins = NULL;
 
+	tramwaySpawner(67, 114, NORD, &ListeDesTramways);
+	tramwaySpawner(56, 0, EST, &ListeDesTramways);	
+
 	int i = 0;
 	char touche;
 	while(touche != 'q'){
@@ -167,10 +170,10 @@ void lancementModeSafe(){
 		i++;
 
 		if(i==1 || i%3000 == 0)
-		{
+		{/*
 		randomSpawnLapin(&ListeDesLapins);
 		randomSpawnLapin(&ListeDesLapins);
-		randomSpawnLapin(&ListeDesLapins);
+		randomSpawnLapin(&ListeDesLapins);*/
 		}
 
 		//tramwaySpawner(67, 114, NORD, &ListeDesTramways);
@@ -198,10 +201,10 @@ void lancementModeSafe(){
 
 		if(i%7 == 0)
 		{
-			roulementPietonsPosition(MatriceMap, MatriceDecision, &ListeDesPietons);
+			roulementPietonsPosition(MatriceMap, &MatriceDecision, &ListeDesPietons);
 		}
 
-		if(i%10 == 0)
+		if(i%60 == 0)
 		{
 			randomSpawnPieton(&ListeDesPietons);
 		}
@@ -233,7 +236,7 @@ void lancementModeSafe(){
 		}
 		if(i%15 == 0)
 		{
-			roulementLapinsPosition(MatriceMap, MatriceDecision, &ListeDesLapins);
+			//roulementLapinsPosition(MatriceMap, MatriceDecision, &ListeDesLapins);
 		}
 
 		for(int j = 0; j<20000000; j++){} 
@@ -340,7 +343,7 @@ void lancementModeDanger(){
 
 		if(i%7 == 0)
 		{
-			roulementPietonsPosition(MatriceMap, MatriceDecision, &ListeDesPietons);
+			roulementPietonsPosition(MatriceMap, &MatriceDecision, &ListeDesPietons);
 		}
 
 		if(i%10 == 0)

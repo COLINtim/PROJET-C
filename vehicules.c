@@ -84,8 +84,7 @@ void roulementVehiculesPosition(char ** MatriceMap,char*** MatriceDecision, Vehi
 					affichageVehicule(tmp->Vehicule);
 					tmp = tmp ->next;
 				}
-				else if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='c')
-				{
+				else if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='c' || (*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='+'){
 					affichageVehicule(tmp->Vehicule);
 					tmp = tmp ->next;
 				}	

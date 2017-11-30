@@ -190,21 +190,21 @@ int ObstaclePieton(char ** MatriceDecision, int i, int j)
 	}
 }
 
-void roulementPietonsPosition(char ** MatriceMap, char** MatriceDecision, PietonList** ListeDesPietons)
+void roulementPietonsPosition(char ** MatriceMap, char*** MatriceDecision, PietonList** ListeDesPietons)
 {
 PietonList *tmp;
 tmp = *ListeDesPietons;
 while (tmp != NULL)
 	{	
 		Position* NextPosition = positionFuturePieton(tmp->Pieton); // Afin de free plus tard
-		if (ObstaclePieton(MatriceDecision, NextPosition->posX, NextPosition->posY) == 2)
+		if (ObstaclePieton((*MatriceDecision), NextPosition->posX, NextPosition->posY) == 2)
 		{
 			affichagePartielPieton(MatriceMap, tmp->Pieton);
 			tmp->Pieton->posX = NextPosition->posX;
 			tmp->Pieton->posY = NextPosition->posY;
 			tmp = pietonEater(ListeDesPietons, tmp->Pieton);
 		}
-		else if (ObstaclePieton(MatriceDecision, NextPosition->posX, NextPosition->posY) == 1)
+		else if (ObstaclePieton((*MatriceDecision), NextPosition->posX, NextPosition->posY) == 1)
 		{
 			affichagePartielPieton(MatriceMap, tmp->Pieton);
 			affichagePieton(MatriceMap, tmp->Pieton);
@@ -214,17 +214,21 @@ while (tmp != NULL)
 		{
 			if(tmp->Pieton->CaseDecision == 'D')
 			{
+					(*MatriceDecision)[tmp->Pieton->posX][tmp->Pieton->posY] = tmp->Pieton->CaseDecision;
 					affichagePartielPieton(MatriceMap, tmp->Pieton);
 					tmp->Pieton->posX = NextPosition->posX;
 					tmp->Pieton->posY = NextPosition->posY;
 					tmp->Pieton->CaseDecision = 'F'; //Passage en mode fantome
+					
 					tmp = tmp->next;
 			}
 			else if(tmp->Pieton->CaseDecision == 'F') //Mode fantome
 			{
+				
 				tmp->Pieton->posX = NextPosition->posX;
 				tmp->Pieton->posY = NextPosition->posY;
-				if(MatriceDecision[NextPosition->posX][NextPosition->posY] == 'A')
+				
+				if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] == 'A')
 				{
 					tmp->Pieton->CaseDecision = 'A';
 				}
@@ -232,11 +236,13 @@ while (tmp != NULL)
 			}
 			else 
 			{ 
+				(*MatriceDecision)[tmp->Pieton->posX][tmp->Pieton->posY] = tmp->Pieton->CaseDecision;
 				affichagePartielPieton(MatriceMap, tmp->Pieton);
 				tmp->Pieton->posX = NextPosition->posX;
 				tmp->Pieton->posY = NextPosition->posY;
-				tmp->Pieton->CaseDecision = MatriceDecision[tmp->Pieton->posX][tmp->Pieton->posY];
-				setNewPietonDirection(tmp->Pieton, MatriceDecision, *ListeDesPietons);
+				tmp->Pieton->CaseDecision = (*MatriceDecision)[tmp->Pieton->posX][tmp->Pieton->posY];
+				setNewPietonDirection(tmp->Pieton, (*MatriceDecision), *ListeDesPietons);
+				(*MatriceDecision)[NextPosition->posX][NextPosition->posY] = '+';
 				affichagePieton(MatriceMap,tmp->Pieton);
 				tmp = tmp->next;	
 			}
