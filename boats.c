@@ -50,18 +50,6 @@ BoatList* boatEater(BoatList **List, Boat* Boat)
 return NULL;
 }
 
-void visualiserBoatList(BoatList *List)
-{
-	BoatList *tmp;
-	tmp = List;
-	while (tmp != NULL)
-		{
-			printf("posX:%d\n",tmp->Boat->posX);
-			printf("posY:%d\n",tmp->Boat->posY);
-			tmp = tmp->next;
-		}
-}
-
 Sens sensAleatoire(Sens A, Sens B)
 {
 	int i = rand()%2;
@@ -79,7 +67,7 @@ void setNewPositionBoat(Boat* Boat)
 	Boat->posX = positionFutureBoat(Boat)->posX;
 	Boat->posY = positionFutureBoat(Boat)->posY;
 }
-	
+
 void setNewBoatSens(Boat* Boat, char ** MatriceDecision, BoatList *ListeDesBoats)
 {
 	switch(MatriceDecision[Boat->posX][Boat->posY])
@@ -195,7 +183,7 @@ void roulementBoatsPosition(char ** MatriceMap,char** MatriceDecision, BoatList*
 	}
 }
 
-void affichageBoat(Boat* B){//⛴
+void affichageBoat(Boat* B){
 	switch(B->custom){
 		case 'v': 
 		couleur("30");
@@ -221,14 +209,6 @@ void affichageBoat(Boat* B){//⛴
 			printf("\033[%d;%dH⛴\n",B->posX,B->posY);
 			couleur("0");
 			break;
-	}
-}
-
-void EaterOrNot(Boat* Boat, BoatList** ListeDesBoats)
-{
-	if (Boat->CaseDecision == 'E')
-	{
-		boatEater(ListeDesBoats, Boat);
 	}
 }
 
@@ -258,7 +238,9 @@ void affichagePartielBoat(char ** matrice, Boat * B){
 		printf("\033[%d;%dH",B->posX,B->posY+i);
 		
 		switch(caractere){
-				case '#': couleur("45");printf("♨");couleur("0");break;
+				//herbe
+				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
+				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
 				//caracteres liés a la route
@@ -273,8 +255,9 @@ void affichagePartielBoat(char ** matrice, Boat * B){
 				case 'h': couleur("32");printf("↑");couleur("0");break;
 				case 'b': couleur("32");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
+				case 'Z': couleur("48;5;52");printf(" ");couleur("0");break;
 				case 'n': printf("⛱");break;
-				//caracteres spéciaux:
+				//caracters spéciaux:
 				case 'k': printf("═");break;
 				case 'l': printf("╚");break;
 				case 'm': printf("║");break;
@@ -293,12 +276,10 @@ void affichagePartielBoat(char ** matrice, Boat * B){
 				case '!': printf("╭");break;
 				case '%': printf("▒");break;
 				case '*': printf("▓");break;
-				case 'H': couleur("32");printf("▓");couleur("0");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;
 		}
 	}			
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

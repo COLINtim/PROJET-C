@@ -187,10 +187,10 @@ void affichagePartielHelicoptere(char ** MatriceMap, Helicoptere * Helicoptere)
 	for(int i = 0; i<2; i++){
 
 		caractere = MatriceMap[Helicoptere->posX][Helicoptere->posY+i];
-
 		printf("\033[%d;%dH",Helicoptere->posX,Helicoptere->posY+i);
 		
 		switch(caractere){
+				//herbe
 				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
 				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
@@ -207,6 +207,7 @@ void affichagePartielHelicoptere(char ** MatriceMap, Helicoptere * Helicoptere)
 				case 'h': couleur("32");printf("↑");couleur("0");break;
 				case 'b': couleur("32");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
+				case 'Z': couleur("48;5;52");printf(" ");couleur("0");break;
 				case 'n': printf("⛱");break;
 				//caracters spéciaux:
 				case 'k': printf("═");break;
@@ -231,5 +232,4 @@ void affichagePartielHelicoptere(char ** MatriceMap, Helicoptere * Helicoptere)
 				default: printf("%c",caractere);break;
 		}
 	}			
-
 }

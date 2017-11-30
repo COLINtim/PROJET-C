@@ -56,10 +56,14 @@ void affichageLapin(Lapin* Lapin)
 void affichagePartielLapin(char** MatriceMap, Lapin* Lapin)
 {
 	char caractere;
-	caractere = MatriceMap[Lapin->posX][Lapin->posY];
-	printf("\033[%d;%dH",Lapin->posX,Lapin->posY);
-	switch(caractere) //a epurer, le champ des lapins ne contient pas autant de caracteres 
-			{
+	for(int i = 0; i<2; i++){
+
+		caractere = MatriceMap[Lapin->posX][Lapin->posY+i];
+		printf("\033[%d;%dH",Lapin->posX,Lapin->posY+i);
+
+		switch(caractere) //a epurer, le champ des lapins ne contient pas autant de caracteres 
+		{
+				//herbe
 				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
 				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
@@ -76,6 +80,7 @@ void affichagePartielLapin(char** MatriceMap, Lapin* Lapin)
 				case 'h': couleur("32");printf("↑");couleur("0");break;
 				case 'b': couleur("32");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
+				case 'Z': couleur("48;5;52");printf(" ");couleur("0");break;
 				case 'n': printf("⛱");break;
 				//caracters spéciaux:
 				case 'k': printf("═");break;
@@ -98,7 +103,8 @@ void affichagePartielLapin(char** MatriceMap, Lapin* Lapin)
 				case '*': printf("▓");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;
-			}
+		}
+	}
 }
 
 Position* positionFutureLapin(Lapin* Lapin)
@@ -250,5 +256,3 @@ while (tmp != NULL)
 		free(NextPosition);
 	}
 }
-
-//🔥⛽

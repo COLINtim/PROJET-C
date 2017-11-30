@@ -45,25 +45,29 @@ PietonList* pietonEater(PietonList **List, Pieton* Pieton)
 	return NULL;
 }
 
-void affichagePieton(Pieton* Pieton)
+void affichagePieton(char ** MatriceMap, Pieton* Pieton)
 {
-		couleur("37");
-		printf("\033[%d;%dH🚶",Pieton->posX,Pieton->posY);
-
+	switch(MatriceMap[Pieton->posX][Pieton->posY]){
+		
+		case '?': couleur("48;5;22");printf("\033[%d;%dH🚶\n",Pieton->posX,Pieton->posY);couleur("0");break;
+		case 'Z': couleur("48;5;52");printf("\033[%d;%dH🚶\n",Pieton->posX,Pieton->posY);couleur("0");break;
+		default : printf("\033[%d;%dH🚶\n",Pieton->posX,Pieton->posY);break;
+	}
 }
 
 void affichagePartielPieton(char ** MatriceMap, Pieton* Pieton)
 {
 	char caractere;
-	char caractere2;
+	for(int i = 0; i<2; i++){
 
-		caractere = MatriceMap[Pieton->posX][Pieton->posY];
-		caractere2 = MatriceMap[Pieton->posX][Pieton->posY+1];
-
-		printf("\033[%d;%dH",Pieton->posX,Pieton->posY);
+		caractere = MatriceMap[Pieton->posX][Pieton->posY+i];
+		printf("\033[%d;%dH",Pieton->posX,Pieton->posY+i);
 		
 		switch(caractere){
-				case '#': couleur("45");printf("♨");couleur("0");break;
+
+				//herbe
+				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
+				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
 				//caracteres liés a la route
@@ -78,8 +82,9 @@ void affichagePartielPieton(char ** MatriceMap, Pieton* Pieton)
 				case 'h': couleur("32");printf("↑");couleur("0");break;
 				case 'b': couleur("32");printf("↓");couleur("0");break;
 				case 'p': couleur("44");printf(" ");couleur("0");break;
+				case 'Z': couleur("48;5;52");printf(" ");couleur("0");break;
 				case 'n': printf("⛱");break;
-				//caracteres spéciaux:
+				//caracters spéciaux:
 				case 'k': printf("═");break;
 				case 'l': printf("╚");break;
 				case 'm': printf("║");break;
@@ -98,54 +103,22 @@ void affichagePartielPieton(char ** MatriceMap, Pieton* Pieton)
 				case '!': printf("╭");break;
 				case '%': printf("▒");break;
 				case '*': printf("▓");break;
-				case 'H': couleur("32");printf("▓");couleur("0");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;
-		}		
+		}	
+	}
+}
 
-		printf("\033[%d;%dH",Pieton->posX,Pieton->posY+1);
+Direction directionRandom(Direction A, Direction B)
+{
+	int i = rand()%2;
+	if (i%2==1) {
+			return A;
+	}
+	else {
 
-		switch(caractere2)
-		{
-				case '#': couleur("45");printf("♨");couleur("0");break;
-				//eau
-				case '~': couleur("46");printf(" ");couleur("0");break;
-				//caracteres liés a la route
-				case 's': couleur("32");printf("¤");couleur("0");break;
-				case '|': couleur("32");printf("|");couleur("0");break;
-				case 'r': couleur("32");printf("─");couleur("0");break;
-				case 'u': couleur("32");printf("│");couleur("0");break;
-				case 'x': couleur("34");printf(" ");couleur("0");break;
-				case 'y': couleur("32");printf("☰");couleur("0");break;
-			 	case 'g': couleur("32");printf("←");couleur("0");break;
-				case 'd': couleur("32");printf("→");couleur("0");break;
-				case 'h': couleur("32");printf("↑");couleur("0");break;
-				case 'b': couleur("32");printf("↓");couleur("0");break;
-				case 'p': couleur("44");printf(" ");couleur("0");break;
-				case 'n': printf("⛱");break;
-				//caracteres spéciaux:
-				case 'k': printf("═");break;
-				case 'l': printf("╚");break;
-				case 'm': printf("║");break;
-				case 'o': printf("╝");break;
-				case 'q': printf("╗");break;
-				case 't': printf("╔");break;
-				case 'v': printf("─");break;
-				case 'w': printf("│");break;
-				case 'z': printf("┐");break;
-				case 'a': printf("┌");break;
-				case 'c': printf("┘");break;
-				case 'e': printf("└");break;
-				case 'f': printf("╮");break;
-				case 'i': printf("╯");break;
-				case 'j': printf("╰");break;
-				case '!': printf("╭");break;
-				case '%': printf("▒");break;
-				case '*': printf("▓");break;
-				case 'H': couleur("32");printf("▓");couleur("0");break;
-				//caracteres par default
-				default: printf("%c",caractere2);break;
-			}
+			return B;
+	}
 }
 
 void setNewPietonDirection(Pieton* Pieton, char ** MatriceDecision, PietonList *ListeDesPietons)
@@ -163,6 +136,16 @@ void setNewPietonDirection(Pieton* Pieton, char ** MatriceDecision, PietonList *
 			break;
 		case 'b':
 			Pieton->Direction = SUD; 
+			break;
+		case 'q':
+			Pieton->Direction = directionRandom(NORD,OUEST);
+			break;
+		case 'x':
+			Pieton->Direction = directionRandom(NORD, EST);
+			break;
+		case 'z':
+			Pieton->Direction = directionRandom(EST,OUEST);
+			break;
 	}
 
 }
@@ -193,7 +176,7 @@ Position* positionFuturePieton(Pieton* Pieton)
 
 int ObstaclePieton(char ** MatriceDecision, int i, int j)
 {
-	if(MatriceDecision[i][j] == 'f' || MatriceDecision[i][j] == 'P')
+	if(MatriceDecision[i][j] == '+')//|| MatriceDecision[i][j] == 'P'
 	{
 		return 1;
 	}
@@ -219,13 +202,12 @@ while (tmp != NULL)
 			affichagePartielPieton(MatriceMap, tmp->Pieton);
 			tmp->Pieton->posX = NextPosition->posX;
 			tmp->Pieton->posY = NextPosition->posY;
-			affichagePieton(tmp->Pieton);
 			tmp = pietonEater(ListeDesPietons, tmp->Pieton);
 		}
 		else if (ObstaclePieton(MatriceDecision, NextPosition->posX, NextPosition->posY) == 1)
 		{
 			affichagePartielPieton(MatriceMap, tmp->Pieton);
-			affichagePieton(tmp->Pieton);
+			affichagePieton(MatriceMap, tmp->Pieton);
 			tmp = tmp->next;
 		}
 		else
@@ -235,7 +217,6 @@ while (tmp != NULL)
 					affichagePartielPieton(MatriceMap, tmp->Pieton);
 					tmp->Pieton->posX = NextPosition->posX;
 					tmp->Pieton->posY = NextPosition->posY;
-					affichagePieton(tmp->Pieton);
 					tmp->Pieton->CaseDecision = 'F'; //Passage en mode fantome
 					tmp = tmp->next;
 			}
@@ -256,12 +237,12 @@ while (tmp != NULL)
 				tmp->Pieton->posY = NextPosition->posY;
 				tmp->Pieton->CaseDecision = MatriceDecision[tmp->Pieton->posX][tmp->Pieton->posY];
 				setNewPietonDirection(tmp->Pieton, MatriceDecision, *ListeDesPietons);
-				affichagePieton(tmp->Pieton);
+				affichagePieton(MatriceMap,tmp->Pieton);
 				tmp = tmp->next;	
 			}
 	
 		}
-			free(NextPosition);
+		free(NextPosition);
 	}
 }
 

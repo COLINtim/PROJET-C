@@ -100,108 +100,22 @@ void modificationDeMatrice(TrafficLight * T, char *** MatriceDecision, char cara
 		}
 	}
 }
-/*
 
-void feuxDeTram(char ***MatriceDecision, char **MatriceMap, Tramway * T1, Tramway * T2){
-	//test
-	if(T1->compteur2 >T2->compteur2){
-
-		if(T1->posX == 56 && T1->posY == 83){T1->compteur2=0;}
-		if(T2->posX == 58 && T2->posY == 96){T2->compteur2=0;}
-		if(T1->compteur2 >= 0){
-
-			switch(T1->compteur2){
-
-				case 0: couleur("41"); printf("\033[55;86H ");printf("\033[60;92H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[60][91]='f';
-						break;
-				case 1: couleur("43"); printf("\033[56;87H─");printf("\033[60;87H ");couleur("0");break;
-				case 2: couleur("43"); printf("\033[56;88H─");printf("\033[60;88H ");couleur("0");break;
-				case 3: couleur("43"); printf("\033[56;89H─");printf("\033[60;89H ");couleur("0");break;
-				case 4: couleur("43"); printf("\033[56;90H─");printf("\033[60;90H ");couleur("0");break;
-				case 5: couleur("43"); printf("\033[56;91H─");printf("\033[60;91H ");couleur("0");break;
-			}
-			if (T1->compteur2 != -1){T1->compteur2++;}
-		}
-		if(T2->compteur2 >= 0){
-
-			switch(T2->compteur2){
-
-				case 0: couleur("41"); printf("\033[55;86H ");printf("\033[60;92H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[60][91]='f';
-						break;
-				case 1: couleur("43"); printf("\033[56;87H─");printf("\033[60;87H ");couleur("0");break;
-				case 2: couleur("43"); printf("\033[56;88H─");printf("\033[60;88H ");couleur("0");break;
-				case 3: couleur("43"); printf("\033[56;89H─");printf("\033[60;89H ");couleur("0");break;
-				case 4: couleur("43"); printf("\033[56;90H─");printf("\033[60;90H ");couleur("0");break;
-				case 5: couleur("43"); printf("\033[56;91H─");printf("\033[60;91H ");couleur("0");break;
-			}
-			if (T2->compteur2 != -1){T2->compteur2++;}
-		}
-
-	}	
-		//si il y a le tram: on rentre dans la boucle de feux (modification du dec.txt et affichage du feux en rouge)
-
-		//boucle feux: on boucle sur 8 frames (|  TTTT  |) 2 premieres on abaisse la barriere et les 2 dernieres on releve.
-
-		//apres ça on réaffiche en vert tout en modifiant le dec.txt.
-
-
+void feuxPietons(char *** MatriceDecision){
+	if((*MatriceDecision)[20][60] == 'o'){
+		(*MatriceDecision)[20][66] = '+';
+	}else{
+		(*MatriceDecision)[20][66] = 'o';
+	}
+	if((*MatriceDecision)[20][87] == 'o'){
+		(*MatriceDecision)[20][89] = '+';
+	}else{
+		(*MatriceDecision)[20][89] = 'o';
+	}
+	if((*MatriceDecision)[22][93] == 'o'){
+		(*MatriceDecision)[25][93] = '+';
+	}else{
+		(*MatriceDecision)[25][93] = 'o';
+	}
 	
-	else if(T1->compteur2 <=T2->compteur2){
-
-		if(T1->posX== 57 && T1->posY == 81){T1->compteur2=0;} 
-		if(T2->posX == 59 && T2->posY == 97){T2->compteur2=0;}
-		if(T2->compteur2 >= 0){
-
-			switch(T2->compteur2){
-
-				case 0: couleur("41"); printf("\033[55;86H ");printf("\033[60;92H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[60][91]='f';
-						break;
-				case 1: couleur("33"); printf("\033[56;87H─");printf("\033[60;87H ");couleur("0");break;
-				case 2: couleur("33"); printf("\033[56;88H─");printf("\033[60;88H ");couleur("0");break;
-				case 3: couleur("33"); printf("\033[56;89H─");printf("\033[60;89H ");couleur("0");break;
-				case 4: couleur("33"); printf("\033[56;90H─");printf("\033[60;90H ");couleur("0");break;
-				case 5: couleur("33"); printf("\033[56;91H─");printf("\033[60;91H ");couleur("0");break;
-				case 15: printf("\033[56;91H ");printf("\033[60;87H ");break;
-				case 16: printf("\033[56;90H ");printf("\033[60;90H ");break;
-				case 17: printf("\033[56;89H ");printf("\033[60;89H ");break;
-				case 18: printf("\033[56;88H ");printf("\033[60;88H ");break;
-				case 19: printf("\033[56;87H ");printf("\033[60;87H ");break;
-				case 20: T2->compteur2=-1;
-			}
-			if (T2->compteur2 != -1){T2->compteur2++;}
-		}
-		if(T1->compteur2 >= 0){
-
-			switch(T1->compteur2){
-
-				case 0: couleur("41"); printf("\033[55;86H ");printf("\033[60;92H ");couleur("0");
-						(*MatriceDecision)[55][87]='f';(*MatriceDecision)[60][91]='f';
-						break;
-				case 1: couleur("43"); printf("\033[56;87H─");printf("\033[60;87H ");couleur("0");break;
-				case 2: couleur("43"); printf("\033[56;88H─");printf("\033[60;88H ");couleur("0");break;
-				case 3: couleur("43"); printf("\033[56;89H─");printf("\033[60;89H ");couleur("0");break;
-				case 4: couleur("43"); printf("\033[56;90H─");printf("\033[60;90H ");couleur("0");break;
-				case 5: couleur("43"); printf("\033[56;91H─");printf("\033[60;91H ");couleur("0");break;
-				case 15: printf("\033[56;91H ");printf("\033[60;87H ");break;
-				case 16: printf("\033[56;90H ");printf("\033[60;90H ");break;
-				case 17: printf("\033[56;89H ");printf("\033[60;89H ");break;
-				case 18: printf("\033[56;88H ");printf("\033[60;88H ");break;
-				case 19: printf("\033[56;87H ");printf("\033[60;87H ");break;
-				case 20: T1->compteur2=-1;
-			}
-			if (T1->compteur2 != -1){T1->compteur2++;}
-		}
-	}
-	if (T1->compteur2 == -1 && T2->compteur2 == -1){
-		couleur("42");
-		printf("\033[55;86H ");
-		printf("\033[60;92H ");
-		couleur("0");
-		(*MatriceDecision)[55][87]='o';
-		(*MatriceDecision)[60][91]='o';
-	}
 }
-*/
