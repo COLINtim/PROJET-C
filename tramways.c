@@ -113,13 +113,13 @@ void affichageTramway(char** MatriceMap, Tramway* Tram)
 		if(Tram->posY <4)
 		{
 			couleur("37");
-			printf("\033[%d;%dH&\n",Tram->posX,Tram->posY);	
+			printf("\033[%d;%dHa\n",Tram->posX,Tram->posY);	
 			couleur("0");
 		}
 		else
 		{
 			couleur("37");
-			printf("\033[%d;%dH&\n",Tram->posX,Tram->posY);	
+			printf("\033[%d;%dHa\n",Tram->posX,Tram->posY);	
 			affichagePartielTramway(MatriceMap, Tram);
 			couleur("0");
 		}
@@ -129,13 +129,13 @@ void affichageTramway(char** MatriceMap, Tramway* Tram)
 		if(Tram->posX > 65)
 		{
 			couleur("37");
-			printf("\033[%d;%dH&\n",Tram->posX,Tram->posY);
+			printf("\033[%d;%dHa\n",Tram->posX,Tram->posY);
 			couleur("0");
 		}
 		else
 		{
 			couleur("37");
-			printf("\033[%d;%dH&\n",Tram->posX,Tram->posY);	
+			printf("\033[%d;%dHa\n",Tram->posX,Tram->posY);	
 			affichagePartielTramway(MatriceMap, Tram);
 			couleur("0");
 		}
@@ -143,7 +143,7 @@ void affichageTramway(char** MatriceMap, Tramway* Tram)
 	else //RESTE DU TEMPS
 	{
 		couleur("37");
-		printf("\033[%d;%dH&\n",Tram->posX,Tram->posY);	
+		printf("\033[%d;%dHa\n",Tram->posX,Tram->posY);	
 		affichagePartielTramway(MatriceMap, Tram);	
 		couleur("0");
 	}
@@ -252,9 +252,9 @@ void affichagePartielTramway(char ** MatriceMap, Tramway * Tramway)
 				if(Tramway->CaseDecision != 'F')
 				{
 					couleur("37");
-					printf("\033[%d;%dH&\n",Tramway->posX,Tramway->posY+1);
-					printf("\033[%d;%dH&\n",Tramway->posX,Tramway->posY+2);
-					printf("\033[%d;%dH&\n",Tramway->posX,Tramway->posY+3);	
+					printf("\033[%d;%dH\n",Tramway->posX,Tramway->posY+1);
+					printf("\033[%d;%dH\n",Tramway->posX,Tramway->posY+2);
+					printf("\033[%d;%dH\n",Tramway->posX,Tramway->posY+3);	
 					couleur("0");
 				}
 				caractere = MatriceMap[Tramway->posX][Tramway->posY+4];

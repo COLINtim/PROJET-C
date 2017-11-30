@@ -142,7 +142,7 @@ Position* positionFutureHelicoptere(Helicoptere* Helico) // Commentaire sur le c
 			}
 			else
 			{
-				Position->posY=(Helico->posY)+1;
+				Position->posY=(Helico->posY)-1;
 			}
 			return Position;
 		default:

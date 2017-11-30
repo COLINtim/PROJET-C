@@ -19,3 +19,11 @@ void lancementModeDanger();
 void creationDesFeux(TrafficLightList ** Liste);
 
 void details();
+
+void randomSpawnPieton(PietonList** ListeDesPietons);
+
+void randomSpawnBoat(char ** MatriceDecision, BoatList** ListeDesBoats);
+
+void randomSpawnLapin(LapinList** ListeDesLapins);
+
+void randomSpawnHelicoptere(HelicoptereList** ListeDesHelicopteres);
