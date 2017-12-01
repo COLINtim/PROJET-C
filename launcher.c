@@ -27,7 +27,7 @@ void lancementMenu(int * affichage){
 
 void randomSpawnPieton(PietonList** ListeDesPietons)
 {
-	int i = rand()%3;
+	int i = rand()%6;
 	switch(i)
 	{
 		case 0:
@@ -36,6 +36,12 @@ void randomSpawnPieton(PietonList** ListeDesPietons)
 		pietonSpawner(66, 128, NORD, ListeDesPietons); break;
 		case 2:
 		pietonSpawner(66, 129, NORD, ListeDesPietons); break;
+		case 3:
+		pietonSpawner(1, 99, SUD, ListeDesPietons); break;
+		case 4:
+		pietonSpawner(1, 100, SUD, ListeDesPietons); break;
+		case 5:
+		pietonSpawner(1, 101, SUD, ListeDesPietons); break;
 	}
 }
 
@@ -147,7 +153,7 @@ void lancementModeSafe(){
 
 	PietonList* ListeDesPietons = NULL;
 
-	//LapinList* ListeDesLapins = NULL;
+	LapinList* ListeDesLapins = NULL;
 
 	tramwaySpawner(67, 114, NORD, &ListeDesTramways);
 	tramwaySpawner(56, 0, EST, &ListeDesTramways);	
@@ -171,16 +177,10 @@ void lancementModeSafe(){
 
 		details();
 
-		if(i==1 || i%3000 == 0)
-		{/*
-		randomSpawnLapin(&ListeDesLapins);
-		randomSpawnLapin(&ListeDesLapins);
-		randomSpawnLapin(&ListeDesLapins);*/
+		if(i==1){
+			randomSpawnLapin(&ListeDesLapins);
+			randomSpawnLapin(&ListeDesLapins);
 		}
-
-		//tramwaySpawner(67, 114, NORD, &ListeDesTramways);
-		//tramwaySpawner(56, 0, EST, &ListeDesTramways);
-
 		
 		if(i%420 == 400)
 		{
@@ -238,7 +238,7 @@ void lancementModeSafe(){
 		}
 		if(i%15 == 0)
 		{
-			//roulementLapinsPosition(MatriceMap, MatriceDecision, &ListeDesLapins);
+			roulementLapinsPosition(MatriceMap, MatriceDecision, &ListeDesLapins);
 		}
 
 		for(int j = 0; j<20000000; j++){} 
@@ -285,7 +285,10 @@ void lancementModeDanger(){
 
 	PietonList* ListeDesPietons = NULL;
 
-	//LapinList* ListeDesLapins = NULL;
+	LapinList* ListeDesLapins = NULL;
+
+
+
 
 	VehiculeList*  ListeAnime = NULL;
 
@@ -314,18 +317,12 @@ void lancementModeDanger(){
 		i++;
 
 		details();
-		
-		if(i==1 || i%3000 == 0)
-		{/*
-		randomSpawnLapin(&ListeDesLapins);
-		randomSpawnLapin(&ListeDesLapins);
-		randomSpawnLapin(&ListeDesLapins);*/
+
+		if(i==1){
+			randomSpawnLapin(&ListeDesLapins);
+			randomSpawnLapin(&ListeDesLapins);
 		}
 
-		//tramwaySpawner(67, 114, NORD, &ListeDesTramways);
-		//tramwaySpawner(56, 0, EST, &ListeDesTramways);
-
-		
 		if(i%420 == 400)
 		{
 			tramwaySpawner(56, 0, EST, &ListeDesTramways);	
@@ -403,10 +400,9 @@ void lancementModeDanger(){
 		}
 		if(i%15 == 0)
 		{
-			//roulementLapinsPosition(MatriceMap, MatriceDecision, &ListeDesLapins);
+			roulementLapinsPosition(MatriceMap, MatriceDecision, &ListeDesLapins);
 		}
 
-		//tramwaySpawner(65, 114, j+1, 0, NORD, &ListeDesTramways);	
 		for(int j = 0; j<20000000; j++){} 
 		printf("\033[67;0H");
 		touche = key_pressed();
@@ -454,6 +450,7 @@ void details(){
 	printf("\033[33;187H  ");
 	printf("\033[34;187H  ");
 	printf("\033[46;86H  ");
+	printf("\033[48;89H══");
 	
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

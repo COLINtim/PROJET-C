@@ -6,7 +6,6 @@ void lapinSpawner(int posX, int posY, LapinList** ListeDesLapins)
 		Lapin* Lapin=malloc(sizeof(Lapin));
 		Lapin->posX = posX;
 		Lapin->posY = posY;
-		Lapin->healthpoints = 9;
 		Lapin->CaseDecision = 't';
 		appendLapinList(ListeDesLapins, Lapin);
 }
@@ -172,6 +171,7 @@ Position* positionFutureLapin(Lapin* Lapin)
 	}
 }
 
+/*
 int Voisins(Lapin* Lapin, char** MatriceDecision)
 {
 	int i;
@@ -253,6 +253,26 @@ while (tmp != NULL)
 				tmp = tmp->next;
 			}
 		}
+		free(NextPosition);
+	}
+}
+*/
+
+void roulementLapinsPosition(char** MatriceMap, char** MatriceDecision, LapinList** ListeDesLapins)
+{
+LapinList *tmp;
+tmp = *ListeDesLapins;
+while (tmp != NULL)
+	{	
+		Position* NextPosition = positionFutureLapin(tmp->Lapin); // Afin de free plus tard
+		affichagePartielLapin(MatriceMap, tmp->Lapin);
+		MatriceDecision[tmp->Lapin->posX][tmp->Lapin->posY] = tmp->Lapin->CaseDecision;
+		tmp->Lapin->posX = NextPosition->posX;
+		tmp->Lapin->posY = NextPosition->posY;
+		tmp->Lapin->CaseDecision = MatriceDecision[tmp->Lapin->posX][tmp->Lapin->posY];
+		MatriceDecision[tmp->Lapin->posX][tmp->Lapin->posY] = 'R';
+		affichageLapin(tmp->Lapin);
+		tmp = tmp->next;
 		free(NextPosition);
 	}
 }

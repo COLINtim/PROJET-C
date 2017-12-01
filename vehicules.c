@@ -352,10 +352,11 @@ void affichagePartielVehicule(char ** MatriceMap, Vehicule * V){
 		
 		switch(caractere){
 				//herbe
-				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
+				case '#': couleur("48;5;22");couleur("38;5;46");printf("♨");couleur("0");break;
 				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
+				case '$': couleur("48;5;45");printf(" ");couleur("0");break;
 				//caracteres liés a la route
 				case 's': couleur("32");printf("¤");couleur("0");break;
 				case '|': couleur("32");printf("|");couleur("0");break;
@@ -367,7 +368,7 @@ void affichagePartielVehicule(char ** MatriceMap, Vehicule * V){
 				case 'd': couleur("32");printf("→");couleur("0");break;
 				case 'h': couleur("32");printf("↑");couleur("0");break;
 				case 'b': couleur("32");printf("↓");couleur("0");break;
-				case 'p': couleur("44");printf(" ");couleur("0");break;
+				case 'p': printf(" ");break;
 				case 'Z': couleur("48;5;52");printf(" ");couleur("0");break;
 				case 'n': printf("⛱");break;
 				//caracters spéciaux:
@@ -387,7 +388,7 @@ void affichagePartielVehicule(char ** MatriceMap, Vehicule * V){
 				case 'i': printf("╯");break;
 				case 'j': printf("╰");break;
 				case '!': printf("╭");break;
-				case '%': printf("▒");break;
+				case '%': couleur("48;5;94");printf("▒");couleur("0");break;
 				case '*': printf("▓");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;

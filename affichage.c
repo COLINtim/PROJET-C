@@ -12,7 +12,7 @@ void affichageMap(){
 			caractere=fgetc(fichier);
 			switch(caractere){
 				//herbe
-				case '#': couleur("38;5;46");printf("♨");couleur("0");break;
+				case '#': couleur("48;5;22");couleur("38;5;46");printf("♨");couleur("0");break;
 				case '?': couleur("48;5;22");printf(" ");couleur("0");break;
 				//eau
 				case '~': couleur("46");printf(" ");couleur("0");break;
@@ -48,7 +48,7 @@ void affichageMap(){
 				case 'i': printf("╯");break;
 				case 'j': printf("╰");break;
 				case '!': printf("╭");break;
-				case '%': couleur("48;5;94");printf("▒");couleur("0");break;
+				case '%': couleur("38;5;228");printf("▒");couleur("0");break;
 				case '*': printf("▓");break;
 				//caracteres par default
 				default: printf("%c",caractere);break;

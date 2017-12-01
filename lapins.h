@@ -14,7 +14,6 @@ typedef struct Position
 	int posX;
 	int posY;
 	char CaseDecision;
-	int healthpoints;
 } Lapin;
 
 typedef struct LapinList // Liste chainee de tramways pour la gestion du trafic
