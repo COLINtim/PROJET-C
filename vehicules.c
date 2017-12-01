@@ -84,11 +84,14 @@ void roulementVehiculesPosition(char ** MatriceMap,char*** MatriceDecision, Vehi
 					affichageVehicule(tmp->Vehicule);
 					tmp = tmp ->next;
 				}
-				else if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='c' || (*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='+'){
+				else if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='c'){
 					affichageVehicule(tmp->Vehicule);
 					tmp = tmp ->next;
 				}	
-				else
+				else if((*MatriceDecision)[NextPosition->posX][NextPosition->posY] =='+'){
+					affichageVehicule(tmp->Vehicule);
+					tmp = tmp ->next;
+				}else
 				{
 					if(((*MatriceDecision)[NextPosition->posX][NextPosition->posY]=='P')&&((tmp->Vehicule->Compteur)<31))
 					{
